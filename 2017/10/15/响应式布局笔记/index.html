@@ -92,7 +92,7 @@
 <meta property="og:image" content="https://i.imgur.com/tnXOEV0.png">
 <meta property="og:image" content="https://i.imgur.com/ehcQl6q.png">
 <meta property="og:image" content="https://i.imgur.com/UIX4unm.png">
-<meta property="og:updated_time" content="2017-10-17T03:32:41.780Z">
+<meta property="og:updated_time" content="2017-10-18T10:02:11.648Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="响应式布局笔记">
 <meta name="twitter:description" content="1. 适应不同的视口&amp;lt;meta name=&amp;quot;viewport&amp;quot; content=&amp;quot;width=device-width， maximum-scales=3,minimum-scale=0.5&amp;quot;/&amp;gt; &amp;lt;meta name=&amp;quot;viewport&amp;quot; content=&amp;quot;width=device-width,initial">
@@ -343,6 +343,7 @@
     max-width:100%
     }
 </code></pre><p>此处不用width：100%是因为图片不会考虑自身固有宽度，只会根据父元素宽度设置，如果父元素宽度大于图片宽度，则图片会被拉伸变模糊。</p>
+<a id="more"></a>
 <h1 id="3-媒体查询"><a href="#3-媒体查询" class="headerlink" title="3.媒体查询"></a>3.媒体查询</h1><h2 id="a-在link标签中组合使用媒体查询"><a href="#a-在link标签中组合使用媒体查询" class="headerlink" title="a.在link标签中组合使用媒体查询"></a>a.在link标签中组合使用媒体查询</h2><pre><code>&lt;link rel=&quot;stylesheet&quot; media=&quot;screen and (orientation: portrait) and (min-width:800px), projection&quot; href=&quot;style.css&quot;&gt;
 </code></pre><h2 id="b-在css中使用媒体查询"><a href="#b-在css中使用媒体查询" class="headerlink" title="b.在css中使用媒体查询"></a>b.在css中使用媒体查询</h2><p><strong>@import与媒体标签</strong></p>
 <pre><code>@import url（“phone.css”） screen and (max-width:360px);
