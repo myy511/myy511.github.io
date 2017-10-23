@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="hexo," />
+  <meta name="keywords" content="javaScript," />
 
 
 
@@ -79,21 +79,18 @@
 
 
 
-<meta name="description" content="注册GIthub账号什么，你没有github账号？哈哈，那你肯定不是个程序员！ 新建仓库仓库名称格式是username.github.io注意，此处username要对应你的GitHub用户名">
-<meta name="keywords" content="hexo">
+<meta name="description" content="基本上，javascript中所有数据类型都拥有valueOf和toString这两个方法，null和undefined除外。它们俩解决javascript值运算与显示的问题,在此我们详细讨论下相关问题。 toString()toString()函数的作用是返回object的字符串表示，如果不确定返回值是不是null或者undefined的情况下，可以使用转型函数String（），它可以将任何类型">
+<meta name="keywords" content="javaScript">
 <meta property="og:type" content="article">
-<meta property="og:title" content="搭建自己的专属Hexo博客">
-<meta property="og:url" content="https://myy511.github.io/2017/10/12/My-first-article/index.html">
+<meta property="og:title" content="valueOf and toString">
+<meta property="og:url" content="https://myy511.github.io/2017/10/23/valueOf-and-toString/index.html">
 <meta property="og:site_name" content="Myy511">
-<meta property="og:description" content="注册GIthub账号什么，你没有github账号？哈哈，那你肯定不是个程序员！ 新建仓库仓库名称格式是username.github.io注意，此处username要对应你的GitHub用户名">
+<meta property="og:description" content="基本上，javascript中所有数据类型都拥有valueOf和toString这两个方法，null和undefined除外。它们俩解决javascript值运算与显示的问题,在此我们详细讨论下相关问题。 toString()toString()函数的作用是返回object的字符串表示，如果不确定返回值是不是null或者undefined的情况下，可以使用转型函数String（），它可以将任何类型">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://i.imgur.com/i58UKq8.png">
-<meta property="og:image" content="https://i.imgur.com/JHfB2Nc.png">
-<meta property="og:updated_time" content="2017-10-18T10:01:27.551Z">
+<meta property="og:updated_time" content="2017-10-23T03:15:40.486Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="搭建自己的专属Hexo博客">
-<meta name="twitter:description" content="注册GIthub账号什么，你没有github账号？哈哈，那你肯定不是个程序员！ 新建仓库仓库名称格式是username.github.io注意，此处username要对应你的GitHub用户名">
-<meta name="twitter:image" content="https://i.imgur.com/i58UKq8.png">
+<meta name="twitter:title" content="valueOf and toString">
+<meta name="twitter:description" content="基本上，javascript中所有数据类型都拥有valueOf和toString这两个方法，null和undefined除外。它们俩解决javascript值运算与显示的问题,在此我们详细讨论下相关问题。 toString()toString()函数的作用是返回object的字符串表示，如果不确定返回值是不是null或者undefined的情况下，可以使用转型函数String（），它可以将任何类型">
 
 
 
@@ -123,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="https://myy511.github.io/2017/10/12/My-first-article/"/>
+  <link rel="canonical" href="https://myy511.github.io/2017/10/23/valueOf-and-toString/"/>
 
 
 
 
 
-  <title>搭建自己的专属Hexo博客 | Myy511</title>
+  <title>valueOf and toString | Myy511</title>
   
 
 
@@ -266,7 +263,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://myy511.github.io/2017/10/12/My-first-article/">
+    <link itemprop="mainEntityOfPage" href="https://myy511.github.io/2017/10/23/valueOf-and-toString/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="myy511">
@@ -283,7 +280,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">搭建自己的专属Hexo博客</h1>
+          <h1 class="post-title" itemprop="name headline">valueOf and toString</h1>
         
 
         <div class="post-meta">
@@ -295,8 +292,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-12T11:26:16+08:00">
-                2017-10-12
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-23T10:50:02+08:00">
+                2017-10-23
               </time>
             
 
@@ -333,59 +330,103 @@
       
 
       
-        <h1 id="注册GIthub账号"><a href="#注册GIthub账号" class="headerlink" title="注册GIthub账号"></a>注册GIthub账号</h1><p>什么，你没有github账号？哈哈，那你肯定不是个程序员！</p>
-<h1 id="新建仓库"><a href="#新建仓库" class="headerlink" title="新建仓库"></a>新建仓库</h1><p>仓库名称格式是username.github.io<br>注意，此处username要对应你的GitHub用户名<br><img src="https://i.imgur.com/i58UKq8.png" alt="仓库创建图片"><br><a id="more"></a></p>
-<h1 id="安装node-js"><a href="#安装node-js" class="headerlink" title="安装node.js"></a>安装node.js</h1><p>安装nodejs时官方有.msi后缀和.exe后缀两种文件 。<br>其中.msi文件直接下载安装，已经自动配置好环境，.exe文件需要手动配置环境 。若需要安装.exe可以参考我的另一篇博客。官网下载速度略慢，可用淘宝镜像。</p>
-<h1 id="安装Git"><a href="#安装Git" class="headerlink" title="安装Git"></a>安装Git</h1><p>去官网或者常用的下载软件的网站都可以下载，安装的时候一路next即可。<br>安装成功之后运行Git Bash</p>
-<h1 id="初始化设置"><a href="#初始化设置" class="headerlink" title="初始化设置"></a>初始化设置</h1><pre><code>$ git config --global user.name “your name”  
-$ git config --global user.email “your email” 
-</code></pre><h1 id="生成密钥"><a href="#生成密钥" class="headerlink" title="生成密钥"></a>生成密钥</h1><p><code>$ ssh-keygen -t rsa -C “your email”</code><br><img src="https://i.imgur.com/JHfB2Nc.png" alt=""></p>
-<h1 id="添加密钥"><a href="#添加密钥" class="headerlink" title="添加密钥"></a>添加密钥</h1><p>打开你的GitHub找到 ssh and gpg key<br>点击 new ssh key<br>刚才得到的id_rsa.pub就是要添加的密钥（添加方法：可将id_rsa.pub文件直接拖入浏览器，出现一串字符，将字符copy到需要填写的地方即可）</p>
-<p>测试：<br>    <code>$ ssh git@github.com</code></p>
-<p>成功后，GitHub上的ssh小钥匙变成绿色</p>
-<h1 id="搭建hexo"><a href="#搭建hexo" class="headerlink" title="搭建hexo"></a>搭建hexo</h1><p>新建一个文件夹存放你的hexo相关文件（我将它命名为blog）</p>
-<h1 id="安装："><a href="#安装：" class="headerlink" title="安装："></a>安装：</h1><pre><code>$ npm install -g hexo 
-</code></pre><p>初始化:<br>    <code>$ cd blog
-     $ hexo init</code></p>
-<p>以下命令都在blog中执行</p>
-<h1 id="安装插件："><a href="#安装插件：" class="headerlink" title="安装插件："></a>安装插件：</h1><pre><code>$ npm install hexo-generator-index --save#索引生成器
-$ npm install hexo-generator-archive --save  #归档生成器
-$ npm install hexo-generator-category --save #分类生成器
-$ npm install hexo-generator-tag --save  #标签生成器
-$ npm install hexo-server --save #本地服务
-$ npm install hexo-deployer-git --save   #hexo通过git发布（必装）
-$ npm install hexo-renderer-marked@0.2.7--save   #渲染器
-$ npm install hexo-renderer-stylus@0.3.0 --save  #渲染器    
-</code></pre><h1 id="生成静态页面"><a href="#生成静态页面" class="headerlink" title="生成静态页面"></a>生成静态页面</h1><pre><code>$ hexo generate #简写 $ hexo g
-</code></pre><h1 id="本地启动"><a href="#本地启动" class="headerlink" title="本地启动"></a>本地启动</h1><pre><code>$ hexo server      #简写 $ hexo s
-</code></pre><p>浏览器输入<a href="http://localhost:4000即可看到效果。" target="_blank" rel="external">http://localhost:4000即可看到效果。</a></p>
-<h1 id="发布"><a href="#发布" class="headerlink" title="发布"></a>发布</h1><p>找到blog根目录下的_config.yml文件，找到下面的deploy: 并更改为</p>
-<pre><code>deploy:
-type: git
-    repo: https://github.com/Wanghan0/
-   Wanghan0.github.io.git #建好的仓库地址.git
-   branch: master`
-</code></pre><p>注意冒号后面有一个字符的空格即英文输入下的一个空格</p>
-<p>更改完毕执行下列代码</p>
-<pre><code>$ hexo g   #生成
-$ hexo d   #发布   #两行简写 $ hexo d -g 
-</code></pre><p>对blog中文件做了更改或者发布文章，都要执行这两行代码才能更新到你的博客<br>好啦现在你可以参观你的博客啦，你的地址就是 <a href="https://your_github_username.github.io" target="_blank" rel="external">https://your_github_username.github.io</a></p>
-<h1 id="写文章"><a href="#写文章" class="headerlink" title="写文章"></a>写文章</h1><p>在命令行模式下cd至博客的根目录，然后执行以下代码</p>
-<pre><code>$ hexo new &quot;postName&quot;   
-</code></pre><p>打开刚刚生成的文件</p>
-<pre><code>title: postName             #文章页面上的显示名称，可以任意修改
-date: 2016-02-18 15:30:16   
-tags:                       #文章标签，可空，多标签请用格式[tag1,tag2,tag3]
-categories:                 #文章分类目录，可空
- ---
-此处编辑正文
-</code></pre><p>注意冒号后面一个字符的空格</p>
-<h1 id="文章摘要"><a href="#文章摘要" class="headerlink" title="文章摘要"></a>文章摘要</h1><p>如果不想自己的文章在主页全部显示，可在截断处添加</p>
-<pre><code>&lt;!--more--&gt;
-</code></pre><h1 id="发布文章"><a href="#发布文章" class="headerlink" title="发布文章"></a>发布文章</h1><pre><code>$ hexo clean 
-$ hexo g 
-$ hexo d 
-</code></pre><p>至此，第一篇博文大功告成啦，有没有很激动，坚持写下去吧！</p>
+        <p>基本上，javascript中所有数据类型都拥有valueOf和toString这两个方法，null和undefined除外。它们俩解决javascript值运算与显示的问题,在此我们详细讨论下相关问题。</p>
+<h1 id="toString-NaN"><a href="#toString-NaN" class="headerlink" title="toString()"></a>toString()</h1><p>toString()函数的作用是返回object的字符串表示，如果不确定返回值是不是null或者undefined的情况下，可以使用转型函数String（），它可以将任何类型的值转化成字符串，包括null和undefined。</p>
+<p>JavaScript对于数组对象、函数对象、正则表达式对象以及Date日期对象均定义了更加具有可读性的toString()方法。</p>
+<h1 id="valueOf-NaN"><a href="#valueOf-NaN" class="headerlink" title="valueOf()"></a>valueOf()</h1><p>valueOf()函数的作用是返回该object自身。</p>
+<a id="more"></a>
+<p>在js高程里面有一段代码：</p>
+<pre><code>var colors = [&quot;red&quot;, &quot;blue&quot;, &quot;green&quot;]; // 创建一个包含3 个字符串的数组  
+alert(colors.toString()); // red,blue,green  
+alert(colors.valueOf()); // red,blue,green  
+alert(colors); // red,blue,green 
+</code></pre><p>三个输出全部一样，那么toString()和valueOf()区别到底是什么？看下一个我写的例子：</p>
+<pre><code>var arr = [1,2,3];  
+alert(Array.isArray(arr.valueOf()));  
+alert(Array.isArray(arr.toString()));
+</code></pre><p>结果是第一个是true而第二个是false，为什么呢，其实valueOf()调用完以后还是返回一个数组。这个数组被alert的时候会调用toString()函数，所以不是valueOf()和toString()函数相同，而是间接的调用了toString()函数！</p>
+<p>进一步测试下：</p>
+<pre><code>var arr = [1,2,3];  
+arr.toString = function () {  
+    alert(&quot;你调用了toString函数&quot;);  
+}  
+alert(arr.valueOf());   
+</code></pre><p>结果就是我们会看到“你调用了toString函数”。</p>
+<p>而对于数值，我们可以调用valueOf的时候直接可以获得数字进行计算，不必转化成字符串，所以不会调用toString。反言之，如果我们需要获得操作对象的字符串形式的时候就会调用其toString函数。</p>
+<p>验证如下代码：</p>
+<pre><code>var bbb = {  
+ i: 10,  
+ toString: function() {  
+  console.log(&apos;toString&apos;);  
+  return this.i;  
+ },  
+ valueOf: function() {  
+  console.log(&apos;valueOf&apos;);  
+  return this.i;  
+ }  
+}
+</code></pre><p>我的理解：valueOf的意思是返回最适合该对象类型的原始值，而toString则是将在该对象类型的原始值以字符串形式返回。</p>
+<p><strong>第一个</strong></p>
+<pre><code>alert(bbb);// 10 toString
+</code></pre><p>这里我们的alert函数需要是的字符串，所以获取的是字符串，而不是原始值，故而调用了toString。</p>
+<p><strong>第二个</strong></p>
+<pre><code>alert(+bbb); // 10 valueOf
+</code></pre><p>同理，alert要的是字符串不是原始值，其实是+bbb这个东西被调用了toString，而bbb被调用了valueOf</p>
+<p>为了验证我们这样写</p>
+<pre><code>var a = {  
+i: 1,  
+valueOf: function () {  
+    alert(&quot;你调用了a的valueOf函数&quot;);  
+    return this.i;  
+},  
+toString: function () {  
+    alert(&quot;你调用了a的toString函数&quot;);  
+    return this.i;  
+}  
+};  
+var c = {  
+i: +a,  
+valueOf: function () {  
+    alert(&quot;你调用了c的valueOf函数&quot;);  
+    return this.i;  
+},  
+toString: function () {  
+    alert(&quot;你调用了c的toString函数&quot;);  
+    return this.i;  
+}  
+};  
+alert(c);
+</code></pre><p>其中让c=+a，那么即可知道结果，果然如此，调用了a的valueOf和c的toString</p>
+<p><strong>第三个</strong></p>
+<pre><code>alert(&apos;&apos;+bbb); // 10 valueOf  
+</code></pre><p>同理，我们可以把上一段我写的程序里面的c:+a改成c:’’+a</p>
+<p><strong>第四个</strong></p>
+<pre><code>alert(String(bbb)); // 10 toString
+</code></pre><p>String这个强制转换其实在其内部是调用了传入参数的toString函数……</p>
+<p><strong>第五个</strong> </p>
+<pre><code>alert(Number(bbb)); // 10 valueOf 
+</code></pre><p>这个是有区别的，因为bbb的i属性是数值类型的，如果i为11111xxxxx这样的字符串，我们就可以看到调用了bbb的toString了<br>代码例子：</p>
+<pre><code>var c = {  
+i: &quot;11111xxxx&quot;,  
+valueOf: function () {  
+    alert(&quot;你调用了c的valueOf函数&quot;);  
+    return this.i;  
+},  
+toString: function () {  
+    alert(&quot;你调用了c的toString函数&quot;);  
+    return this.i;  
+}  
+};  
+alert(c);
+</code></pre><p><strong>第六个</strong></p>
+<pre><code>alert(bbb == &apos;10&apos;); // true valueOf 
+</code></pre><p>这个里面的判等的顺序是，获取原始值，然后判断两边的原始值是否相等，所以调用valueOf</p>
+<p><strong>第七个</strong></p>
+<pre><code>alert(bbb === &apos;10&apos;); // false 
+</code></pre><p>===操作符不进行隐式转换，判全等的第一个步骤是判断类型，因为类型都不一样了，所以后面什么都不会调用</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p><strong>valueOf</strong>偏向于运算，<strong>toString</strong>偏向于显示。</p>
+<p>1、 在进行强转字符串类型时将优先调用toString方法，强转为数字时优先调用valueOf。</p>
+<p>2、 在有运算操作符的情况下，valueOf的优先级高于toString。</p>
 
       
     </div>
@@ -403,7 +444,7 @@ $ hexo d
       
         <div class="post-tags">
           
-            <a href="/tags/hexo/" rel="tag"># hexo</a>
+            <a href="/tags/javaScript/" rel="tag"># javaScript</a>
           
         </div>
       
@@ -416,15 +457,15 @@ $ hexo d
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2017/10/15/响应式布局笔记/" rel="next" title="响应式布局笔记">
+                <i class="fa fa-chevron-left"></i> 响应式布局笔记
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/10/13/html复习巩固/" rel="prev" title="html复习巩固">
-                html复习巩固 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -563,7 +604,7 @@ $ hexo d
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#注册GIthub账号"><span class="nav-number">1.</span> <span class="nav-text">注册GIthub账号</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#新建仓库"><span class="nav-number">2.</span> <span class="nav-text">新建仓库</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装node-js"><span class="nav-number">3.</span> <span class="nav-text">安装node.js</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装Git"><span class="nav-number">4.</span> <span class="nav-text">安装Git</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#初始化设置"><span class="nav-number">5.</span> <span class="nav-text">初始化设置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#生成密钥"><span class="nav-number">6.</span> <span class="nav-text">生成密钥</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#添加密钥"><span class="nav-number">7.</span> <span class="nav-text">添加密钥</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#搭建hexo"><span class="nav-number">8.</span> <span class="nav-text">搭建hexo</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装："><span class="nav-number">9.</span> <span class="nav-text">安装：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装插件："><span class="nav-number">10.</span> <span class="nav-text">安装插件：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#生成静态页面"><span class="nav-number">11.</span> <span class="nav-text">生成静态页面</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#本地启动"><span class="nav-number">12.</span> <span class="nav-text">本地启动</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#发布"><span class="nav-number">13.</span> <span class="nav-text">发布</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#写文章"><span class="nav-number">14.</span> <span class="nav-text">写文章</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#文章摘要"><span class="nav-number">15.</span> <span class="nav-text">文章摘要</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#发布文章"><span class="nav-number">16.</span> <span class="nav-text">发布文章</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#toString-NaN"><span class="nav-number">1.</span> <span class="nav-text">toString()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#valueOf-NaN"><span class="nav-number">2.</span> <span class="nav-text">valueOf()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>
