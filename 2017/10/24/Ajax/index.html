@@ -6,20 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://myy511.github.io">
-  <title>Ajax | Myy511</title>
+  <title>浅谈Array的sort方法 | Myy511</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="先预留空间测试下，快点儿好吧，aaaaaa aaaaaa心态一定不能崩溃，冷静思考，我好像找到了解决办法，开夸我聪明">
-<meta name="keywords" content="ajax">
+  <meta name="description" content="JavaScript array.sort(compare()) 的实现原理是什么？ 先看下’ 2015-ECMAScript-262语言规范 ‘的解释：The sort is not necessarily stable - 排序是不稳定的. (Ps: 截取的重要部分）. MDN的基本解释：sort() 方法在适当的位置对数组的元素进行排序，并返回数组。 sort 排序不一定是稳定的。默认排序顺">
+<meta name="keywords" content="js">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Ajax">
+<meta property="og:title" content="浅谈Array的sort方法">
 <meta property="og:url" content="https://myy511.github.io/2017/10/24/Ajax/index.html">
 <meta property="og:site_name" content="Myy511">
-<meta property="og:description" content="先预留空间测试下，快点儿好吧，aaaaaa aaaaaa心态一定不能崩溃，冷静思考，我好像找到了解决办法，开夸我聪明">
+<meta property="og:description" content="JavaScript array.sort(compare()) 的实现原理是什么？ 先看下’ 2015-ECMAScript-262语言规范 ‘的解释：The sort is not necessarily stable - 排序是不稳定的. (Ps: 截取的重要部分）. MDN的基本解释：sort() 方法在适当的位置对数组的元素进行排序，并返回数组。 sort 排序不一定是稳定的。默认排序顺">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-25T00:36:09.065Z">
+<meta property="og:image" content="https://i.imgur.com/PNBeJ1V.png">
+<meta property="og:updated_time" content="2017-10-25T10:05:08.507Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Ajax">
-<meta name="twitter:description" content="先预留空间测试下，快点儿好吧，aaaaaa aaaaaa心态一定不能崩溃，冷静思考，我好像找到了解决办法，开夸我聪明">
+<meta name="twitter:title" content="浅谈Array的sort方法">
+<meta name="twitter:description" content="JavaScript array.sort(compare()) 的实现原理是什么？ 先看下’ 2015-ECMAScript-262语言规范 ‘的解释：The sort is not necessarily stable - 排序是不稳定的. (Ps: 截取的重要部分）. MDN的基本解释：sort() 方法在适当的位置对数组的元素进行排序，并返回数组。 sort 排序不一定是稳定的。默认排序顺">
+<meta name="twitter:image" content="https://i.imgur.com/PNBeJ1V.png">
   
     <link rel="alternative" href="/atom.xml" title="Myy511" type="application/atom+xml">
   
@@ -162,7 +164,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Ajax
+      浅谈Array的sort方法
     </h1>
   
 
@@ -175,7 +177,33 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p> 先预留空间测试下，快点儿好吧，aaaaaa aaaaaa心态一定不能崩溃，冷静思考，我好像找到了解决办法，开夸我聪明</p>
+        <p>JavaScript array.sort(compare()) 的实现原理是什么？</p>
+<p>先看下’ 2015-ECMAScript-262语言规范 ‘的解释：The sort is not necessarily stable - 排序是不稳定的. (Ps: 截取的重要部分）.</p>
+<p>MDN的基本解释：sort() 方法在适当的位置对数组的元素进行排序，并返回数组。 sort 排序不一定是稳定的。默认排序顺序是根据字符串Unicode码点.</p>
+<p>基本的就不说了，那怎样才算排序不稳定？ 我们做个小实验：</p>
+<pre><code>&lt;span style=&quot;font-family:Tahoma;font-size:14px;&quot;&gt;var exArray = [15,0,-3,5];  
+var i=1;  
+window.onload = function(){  
+exArray.sort(compare);  
+console.log(&quot;最终结果&quot;+exArray);  
+}  
+function compare(num1,num2){  
+console.log(&quot;第&quot; + (i++) +&quot;次比较： &quot;+&quot;nowArray:[&quot;+ exArray + &quot;].  参数num1: &quot;+num1+&quot;， 参数num2: &quot;+num2);  
+var key = (num1 &gt; num2) ? 1:-1;  
+console.log(key);  
+return key;  
+}&lt;/span&gt; 
+</code></pre><p><img src="https://i.imgur.com/PNBeJ1V.png" alt=""></p>
+<p>运行结果解释：</p>
+<ul>
+<li>第一次比较时数组元素为：15,0，-3,5. compare比较函数的参数为：15,0.  因为返回1，所以0和15互换位置.</li>
+<li>第二次比较时数组元素为：0,15，-3,5. compare比较函数的参数为：15，-3. 因为返回1，所以按道理15和-3互换.</li>
+<li>第三次比较时发现数组元素为：0，15,15,5. -3被拐跑了？ 这里便体现了”不稳定排序”. 15和-3比较后并没有立即互换，首先把15赋给arr[2]数组元素，然后把 -3(可能) 存放在某个临时变量中，再与前面的0做比较，当确定-3比0小之后，互换位置，释放临时变量.</li>
+<li>第四次比较时数组元素理所当然的变成了-3,0,15,5. 此时compare比较函数的参数为：15,5.</li>
+<li>第五次的比较和第三次原理相同.<br>得到最终的排序数组：-3,0,5,15.</li>
+</ul>
+<p>那做完这个小实验可以总结出一些可能不太严谨的规律：</p>
+<p>数组sort比较时，从数组内索引值为0和1的参数开始比较（即参数num1和num2），比较结果没有变动的话，继续比较索引值1和2的，如果结果有变化，变换两者的位置（索引值），并判断之前有无其他参数，如果有的话则会对参数num1和num1之前的参数进行比较。如果没有则用参数num2与索引值+1的参数比较。遵循此逻辑重复循环操作，完成排序.</p>
 
       
 
@@ -210,7 +238,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">ajax</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">js</a>
         		</li>
       		
 		</ul>
@@ -421,7 +449,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">ajax</a>
+                <a href="javascript:void(0)" class="js-tag color3">js</a>
               </li>
              
               <li class="article-tag-list-item">
