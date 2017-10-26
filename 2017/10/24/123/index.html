@@ -6,20 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://myy511.github.io">
-  <title>valueOf and toString | Myy511</title>
+  <title>浅谈Array的sort方法 | Myy511</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="基本上，javascript中所有数据类型都拥有valueOf和toString这两个方法，null和undefined除外。它们俩解决javascript值运算与显示的问题,在此我们详细讨论下相关问题。 toString()toString()函数的作用是返回object的字符串表示，如果不确定返回值是不是null或者undefined的情况下，可以使用转型函数String（），它可以将任何类型">
-<meta name="keywords" content="javaScript">
+  <meta name="description" content="JavaScript array.sort(compare()) 的实现原理是什么？ 先看下’ 2015-ECMAScript-262语言规范 ‘的解释：The sort is not necessarily stable - 排序是不稳定的. (Ps: 截取的重要部分）. MDN的基本解释：sort() 方法在适当的位置对数组的元素进行排序，并返回数组。 sort 排序不一定是稳定的。默认排序顺">
+<meta name="keywords" content="js">
 <meta property="og:type" content="article">
-<meta property="og:title" content="valueOf and toString">
-<meta property="og:url" content="https://myy511.github.io/2017/10/23/valueOf-and-toString/index.html">
+<meta property="og:title" content="浅谈Array的sort方法">
+<meta property="og:url" content="https://myy511.github.io/2017/10/24/123/index.html">
 <meta property="og:site_name" content="Myy511">
-<meta property="og:description" content="基本上，javascript中所有数据类型都拥有valueOf和toString这两个方法，null和undefined除外。它们俩解决javascript值运算与显示的问题,在此我们详细讨论下相关问题。 toString()toString()函数的作用是返回object的字符串表示，如果不确定返回值是不是null或者undefined的情况下，可以使用转型函数String（），它可以将任何类型">
+<meta property="og:description" content="JavaScript array.sort(compare()) 的实现原理是什么？ 先看下’ 2015-ECMAScript-262语言规范 ‘的解释：The sort is not necessarily stable - 排序是不稳定的. (Ps: 截取的重要部分）. MDN的基本解释：sort() 方法在适当的位置对数组的元素进行排序，并返回数组。 sort 排序不一定是稳定的。默认排序顺">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-23T14:50:59.558Z">
+<meta property="og:image" content="https://i.imgur.com/PNBeJ1V.png">
+<meta property="og:updated_time" content="2017-10-26T03:52:51.417Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="valueOf and toString">
-<meta name="twitter:description" content="基本上，javascript中所有数据类型都拥有valueOf和toString这两个方法，null和undefined除外。它们俩解决javascript值运算与显示的问题,在此我们详细讨论下相关问题。 toString()toString()函数的作用是返回object的字符串表示，如果不确定返回值是不是null或者undefined的情况下，可以使用转型函数String（），它可以将任何类型">
+<meta name="twitter:title" content="浅谈Array的sort方法">
+<meta name="twitter:description" content="JavaScript array.sort(compare()) 的实现原理是什么？ 先看下’ 2015-ECMAScript-262语言规范 ‘的解释：The sort is not necessarily stable - 排序是不稳定的. (Ps: 截取的重要部分）. MDN的基本解释：sort() 方法在适当的位置对数组的元素进行排序，并返回数组。 sort 排序不一定是稳定的。默认排序顺">
+<meta name="twitter:image" content="https://i.imgur.com/PNBeJ1V.png">
   
     <link rel="alternative" href="/atom.xml" title="Myy511" type="application/atom+xml">
   
@@ -155,124 +157,54 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-valueOf-and-toString" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-123" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      valueOf and toString
+      浅谈Array的sort方法
     </h1>
   
 
         
-        <a href="/2017/10/23/valueOf-and-toString/" class="archive-article-date">
-  	<time datetime="2017-10-23T02:50:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-23</time>
+        <a href="/2017/10/24/123/" class="archive-article-date">
+  	<time datetime="2017-10-24T12:10:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-24</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>基本上，javascript中所有数据类型都拥有valueOf和toString这两个方法，null和undefined除外。它们俩解决javascript值运算与显示的问题,在此我们详细讨论下相关问题。</p>
-<h1 id="toString-NaN"><a href="#toString-NaN" class="headerlink" title="toString()"></a>toString()</h1><p>toString()函数的作用是返回object的字符串表示，如果不确定返回值是不是null或者undefined的情况下，可以使用转型函数String（），它可以将任何类型的值转化成字符串，包括null和undefined。</p>
-<p>JavaScript对于数组对象、函数对象、正则表达式对象以及Date日期对象均定义了更加具有可读性的toString()方法。</p>
-<h1 id="valueOf-NaN"><a href="#valueOf-NaN" class="headerlink" title="valueOf()"></a>valueOf()</h1><p>valueOf()函数的作用是返回该object自身。</p>
-<a id="more"></a>
-<p>在js高程里面有一段代码：</p>
-<pre><code>var colors = [&quot;red&quot;, &quot;blue&quot;, &quot;green&quot;]; // 创建一个包含3 个字符串的数组  
-alert(colors.toString()); // red,blue,green  
-alert(colors.valueOf()); // red,blue,green  
-alert(colors); // red,blue,green 
-</code></pre><p>三个输出全部一样，那么toString()和valueOf()区别到底是什么？看下一个我写的例子：</p>
-<pre><code>var arr = [1,2,3];  
-alert(Array.isArray(arr.valueOf()));  
-alert(Array.isArray(arr.toString()));
-</code></pre><p>结果是第一个是true而第二个是false，为什么呢，其实valueOf()调用完以后还是返回一个数组。这个数组被alert的时候会调用toString()函数，所以不是valueOf()和toString()函数相同，而是间接的调用了toString()函数！</p>
-<p>进一步测试下：</p>
-<pre><code>var arr = [1,2,3];  
-arr.toString = function () {  
-    alert(&quot;你调用了toString函数&quot;);  
+        <p>JavaScript array.sort(compare()) 的实现原理是什么？</p>
+<p>先看下’ 2015-ECMAScript-262语言规范 ‘的解释：The sort is not necessarily stable - 排序是不稳定的. (Ps: 截取的重要部分）.</p>
+<p>MDN的基本解释：sort() 方法在适当的位置对数组的元素进行排序，并返回数组。 sort 排序不一定是稳定的。默认排序顺序是根据字符串Unicode码点.</p>
+<p>基本的就不说了，那怎样才算排序不稳定？ 我们做个小实验：</p>
+<pre><code>&lt;span style=&quot;font-family:Tahoma;font-size:14px;&quot;&gt;var exArray = [15,0,-3,5];  
+var i=1;  
+window.onload = function(){  
+exArray.sort(compare);  
+console.log(&quot;最终结果&quot;+exArray);  
 }  
-alert(arr.valueOf());   
-</code></pre><p>结果就是我们会看到“你调用了toString函数”。</p>
-<p>而对于数值，我们可以调用valueOf的时候直接可以获得数字进行计算，不必转化成字符串，所以不会调用toString。反言之，如果我们需要获得操作对象的字符串形式的时候就会调用其toString函数。</p>
-<p>验证如下代码：</p>
-<pre><code>var bbb = {  
- i: 10,  
- toString: function() {  
-  console.log(&apos;toString&apos;);  
-  return this.i;  
- },  
- valueOf: function() {  
-  console.log(&apos;valueOf&apos;);  
-  return this.i;  
- }  
-}
-</code></pre><p>我的理解：valueOf的意思是返回最适合该对象类型的原始值，而toString则是将在该对象类型的原始值以字符串形式返回。</p>
-<p><strong>第一个</strong></p>
-<pre><code>alert(bbb);// 10 toString
-</code></pre><p>这里我们的alert函数需要是的字符串，所以获取的是字符串，而不是原始值，故而调用了toString。</p>
-<p><strong>第二个</strong></p>
-<pre><code>alert(+bbb); // 10 valueOf
-</code></pre><p>同理，alert要的是字符串不是原始值，其实是+bbb这个东西被调用了toString，而bbb被调用了valueOf</p>
-<p>为了验证我们这样写</p>
-<pre><code>var a = {  
-i: 1,  
-valueOf: function () {  
-    alert(&quot;你调用了a的valueOf函数&quot;);  
-    return this.i;  
-},  
-toString: function () {  
-    alert(&quot;你调用了a的toString函数&quot;);  
-    return this.i;  
-}  
-};  
-var c = {  
-i: +a,  
-valueOf: function () {  
-    alert(&quot;你调用了c的valueOf函数&quot;);  
-    return this.i;  
-},  
-toString: function () {  
-    alert(&quot;你调用了c的toString函数&quot;);  
-    return this.i;  
-}  
-};  
-alert(c);
-</code></pre><p>其中让c=+a，那么即可知道结果，果然如此，调用了a的valueOf和c的toString</p>
-<p><strong>第三个</strong></p>
-<pre><code>alert(&apos;&apos;+bbb); // 10 valueOf  
-</code></pre><p>同理，我们可以把上一段我写的程序里面的c:+a改成c:’’+a</p>
-<p><strong>第四个</strong></p>
-<pre><code>alert(String(bbb)); // 10 toString
-</code></pre><p>String这个强制转换其实在其内部是调用了传入参数的toString函数……</p>
-<p><strong>第五个</strong> </p>
-<pre><code>alert(Number(bbb)); // 10 valueOf 
-</code></pre><p>这个是有区别的，因为bbb的i属性是数值类型的，如果i为11111xxxxx这样的字符串，我们就可以看到调用了bbb的toString了</p>
-<p>代码例子：</p>
-<pre><code>var c = {  
-i: &quot;11111xxxx&quot;,  
-valueOf: function () {  
-    alert(&quot;你调用了c的valueOf函数&quot;);  
-    return this.i;  
-},  
-toString: function () {  
-    alert(&quot;你调用了c的toString函数&quot;);  
-    return this.i;  
-}  
-};  
-alert(c);
-</code></pre><p><strong>第六个</strong></p>
-<pre><code>alert(bbb == &apos;10&apos;); // true valueOf 
-</code></pre><p>这个里面的判等的顺序是，获取原始值，然后判断两边的原始值是否相等，所以调用valueOf</p>
-<p><strong>第七个</strong></p>
-<pre><code>alert(bbb === &apos;10&apos;); // false 
-</code></pre><p>===操作符不进行隐式转换，判全等的第一个步骤是判断类型，因为类型都不一样了，所以后面什么都不会调用</p>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p><strong>valueOf</strong>偏向于运算，<strong>toString</strong>偏向于显示。</p>
-<p>1、 在进行强转字符串类型时将优先调用toString方法，强转为数字时优先调用valueOf。</p>
-<p>2、 在有运算操作符的情况下，valueOf的优先级高于toString。</p>
+function compare(num1,num2){  
+console.log(&quot;第&quot; + (i++) +&quot;次比较： &quot;+&quot;nowArray:[&quot;+ exArray + &quot;].  参数num1: &quot;+num1+&quot;， 参数num2: &quot;+num2);  
+var key = (num1 &gt; num2) ? 1:-1;  
+console.log(key);  
+return key;  
+}&lt;/span&gt; 
+</code></pre><p><img src="https://i.imgur.com/PNBeJ1V.png" alt=""></p>
+<p>运行结果解释：</p>
+<ul>
+<li>第一次比较时数组元素为：15,0，-3,5. compare比较函数的参数为：15,0.  因为返回1，所以0和15互换位置.</li>
+<li>第二次比较时数组元素为：0,15，-3,5. compare比较函数的参数为：15，-3. 因为返回1，所以按道理15和-3互换.</li>
+<li>第三次比较时发现数组元素为：0，15,15,5. -3被拐跑了？ 这里便体现了”不稳定排序”. 15和-3比较后并没有立即互换，首先把15赋给arr[2]数组元素，然后把 -3(可能) 存放在某个临时变量中，再与前面的0做比较，当确定-3比0小之后，互换位置，释放临时变量.</li>
+<li>第四次比较时数组元素理所当然的变成了-3,0,15,5. 此时compare比较函数的参数为：15,5.</li>
+<li>第五次的比较和第三次原理相同.<br>得到最终的排序数组：-3,0,5,15.</li>
+</ul>
+<p>那做完这个小实验可以总结出一些可能不太严谨的规律：</p>
+<p>数组sort比较时，从数组内索引值为0和1的参数开始比较（即参数num1和num2），比较结果没有变动的话，继续比较索引值1和2的，如果结果有变化，变换两者的位置（索引值），并判断之前有无其他参数，如果有的话则会对参数num1和num1之前的参数进行比较。如果没有则用参数num2与索引值+1的参数比较。遵循此逻辑重复循环操作，完成排序.</p>
+<p>未完待续。。。。</p>
 
       
 
@@ -307,7 +239,7 @@ alert(c);
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javaScript</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">js</a>
         		</li>
       		
 		</ul>
@@ -363,7 +295,7 @@ alert(c);
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=https://myy511.github.io/2017/10/23/valueOf-and-toString/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=https://myy511.github.io/2017/10/24/123/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -377,18 +309,9 @@ alert(c);
   
 <nav id="article-nav">
   
-    <a href="/2017/10/24/浅谈sort方法/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          浅谈Array的sort方法
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/10/15/响应式布局笔记/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">响应式布局笔记</div>
+    <a href="/2017/10/24/浅谈sort方法/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">浅谈Array的sort方法</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -415,7 +338,7 @@ alert(c);
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#toString-NaN"><span class="toc-number">1.</span> <span class="toc-text">toString()</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#valueOf-NaN"><span class="toc-number">2.</span> <span class="toc-text">valueOf()</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#总结"><span class="toc-number">3.</span> <span class="toc-text">总结</span></a></li></ol>
+                    目录，不存在的…
                     </div>
                 </span>
             </div>
