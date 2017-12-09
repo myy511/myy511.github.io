@@ -174,48 +174,9 @@
       
         <h1 id="原生js解决document-getElementsByClassName兼容问题"><a href="#原生js解决document-getElementsByClassName兼容问题" class="headerlink" title="原生js解决document.getElementsByClassName兼容问题"></a>原生js解决document.getElementsByClassName兼容问题</h1><p>在新手使用原生JavaScript时，常常会用 document.getElementById、document.getElementsByClassName 以及document.getElementsByTagName<br>等方式来获取到元素，进而对其进行操作。</p>
 <p>但IE9以下的版本却不支持document.getElementsByClassName方法，所以很多刚开始接触js的同学往往会很困惑这个问题。这里封装了一下三种方法的的函数，使其都能完美使用三种方法，希望能对大家有所帮助。这里使用的$符号作为函数名。同时在传递参数时，第二个参数可以不写。</p>
-<pre><code>// 可以根据 id、class、element 查找元素   
-// param (字符串) : #id    .class    tag  
-// obj : 父元素  
-
-//首先判断通过哪种方式获取元素  
-function $(param, obj) { // #box  
-    obj = obj || document; // 没有传递 obj 参数，则默认使用 document  
-    if (param.charAt(0) === &quot;#&quot;) // 通过id名获取元素  
-        return document.getElementById(param.slice(1));//这里的slice是字符串的一个函数，用于获取第2个元素及之后的字符串  
-    if (param.indexOf(&quot;.&quot;) === 0) //&lt;span style=&quot;font-family: Arial, Helvetica, sans-serif;&quot;&gt;通过class名获取元素&lt;/span&gt;  
-        return getByClass(param.slice(1), obj);//调用下面的getClass函数  
-
-    return obj.getElementsByTagName(param); // tag  
-}  
-
-// 如何解决 getElementsByClassName 兼容问题  
-function getByClass(className, obj) {  
-    obj = obj || document;  
-if (obj.getElementsByClassName) // 支持 getElementsByClassName 方法的使用  
-        return obj.getElementsByClassName(className);  
-    /* 不支持 getElementsByClassName 方法的使用 */  
-    // 保存所有查找到的元素的数组结构  
-    var result = [];   
-    // 查找出 obj 对象后代所有元素  
-    var tags = obj.getElementsByTagName(&quot;*&quot;);  
-    // 遍历每个元素  
-    for (var i = 0, len = tags.length; i &lt; len; i++) {  
-        // 获取到当前遍历元素所使用的所有类名  
-        var classNames = tags[i].className.split(&quot; &quot;);  
-        // 遍历当前元素的每个类名  
-        for (var j = 0, l = classNames.length; j &lt; l; j++) {  
-            if ( classNames[j] === className ) { // 说明当前遍历到的元素使用过要查找的类名  
-                result.push(tags[i]);  
-                break;  
-            }  
-        }  
-    }  
-
-    // 返回结果集  
-    return result;  
-}  
-</code></pre>
+        
+          <a class="article-more-a" href="/2017/12/09/兼容问题/#more">more >></a>
+        
       
 
       
@@ -930,14 +891,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javaScript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
@@ -946,11 +899,19 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">js</a>
+                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">javaScript</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">html5 css3</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">js</a>
               </li>
             
             <div class="clearfix"></div>
