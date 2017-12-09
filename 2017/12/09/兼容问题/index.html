@@ -6,16 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://myy511.github.io">
-  <title>tags | Myy511</title>
+  <title>兼容问题 | Myy511</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="tags">
-<meta property="og:url" content="https://myy511.github.io/tags/index.html">
+  <meta name="description" content="原生js解决document.getElementsByClassName兼容问题在新手使用原生JavaScript时，常常会用 document.getElementById、document.getElementsByClassName 以及document.getElementsByTagName等方式来获取到元素，进而对其进行操作。 但IE9以下的版本却不支持document.getEle">
+<meta name="keywords" content="javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="兼容问题">
+<meta property="og:url" content="https://myy511.github.io/2017/12/09/兼容问题/index.html">
 <meta property="og:site_name" content="Myy511">
+<meta property="og:description" content="原生js解决document.getElementsByClassName兼容问题在新手使用原生JavaScript时，常常会用 document.getElementById、document.getElementsByClassName 以及document.getElementsByTagName等方式来获取到元素，进而对其进行操作。 但IE9以下的版本却不支持document.getEle">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-12T02:49:59.475Z">
+<meta property="og:updated_time" content="2017-12-09T14:13:29.447Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="tags">
+<meta name="twitter:title" content="兼容问题">
+<meta name="twitter:description" content="原生js解决document.getElementsByClassName兼容问题在新手使用原生JavaScript时，常常会用 document.getElementById、document.getElementsByClassName 以及document.getElementsByTagName等方式来获取到元素，进而对其进行操作。 但IE9以下的版本却不支持document.getEle">
   
     <link rel="alternative" href="/atom.xml" title="Myy511" type="application/atom+xml">
   
@@ -151,27 +155,70 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="page-" class="article article-type-page " itemscope itemprop="blogPost">
+            <article id="post-兼容问题" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      tags
+      兼容问题
     </h1>
   
 
         
-        <a href="/tags/index.html" class="archive-article-date">
-  	<time datetime="2017-10-12T02:49:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-12</time>
+        <a href="/2017/12/09/兼容问题/" class="archive-article-date">
+  	<time datetime="2017-12-09T14:09:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-09</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h1 id="原生js解决document-getElementsByClassName兼容问题"><a href="#原生js解决document-getElementsByClassName兼容问题" class="headerlink" title="原生js解决document.getElementsByClassName兼容问题"></a>原生js解决document.getElementsByClassName兼容问题</h1><p>在新手使用原生JavaScript时，常常会用 document.getElementById、document.getElementsByClassName 以及document.getElementsByTagName<br>等方式来获取到元素，进而对其进行操作。</p>
+<p>但IE9以下的版本却不支持document.getElementsByClassName方法，所以很多刚开始接触js的同学往往会很困惑这个问题。这里封装了一下三种方法的的函数，使其都能完美使用三种方法，希望能对大家有所帮助。这里使用的$符号作为函数名。同时在传递参数时，第二个参数可以不写。</p>
+<pre><code>// 可以根据 id、class、element 查找元素   
+// param (字符串) : #id    .class    tag  
+// obj : 父元素  
+
+//首先判断通过哪种方式获取元素  
+function $(param, obj) { // #box  
+    obj = obj || document; // 没有传递 obj 参数，则默认使用 document  
+    if (param.charAt(0) === &quot;#&quot;) // 通过id名获取元素  
+        return document.getElementById(param.slice(1));//这里的slice是字符串的一个函数，用于获取第2个元素及之后的字符串  
+    if (param.indexOf(&quot;.&quot;) === 0) //&lt;span style=&quot;font-family: Arial, Helvetica, sans-serif;&quot;&gt;通过class名获取元素&lt;/span&gt;  
+        return getByClass(param.slice(1), obj);//调用下面的getClass函数  
+
+    return obj.getElementsByTagName(param); // tag  
+}  
+
+// 如何解决 getElementsByClassName 兼容问题  
+function getByClass(className, obj) {  
+    obj = obj || document;  
+if (obj.getElementsByClassName) // 支持 getElementsByClassName 方法的使用  
+        return obj.getElementsByClassName(className);  
+    /* 不支持 getElementsByClassName 方法的使用 */  
+    // 保存所有查找到的元素的数组结构  
+    var result = [];   
+    // 查找出 obj 对象后代所有元素  
+    var tags = obj.getElementsByTagName(&quot;*&quot;);  
+    // 遍历每个元素  
+    for (var i = 0, len = tags.length; i &lt; len; i++) {  
+        // 获取到当前遍历元素所使用的所有类名  
+        var classNames = tags[i].className.split(&quot; &quot;);  
+        // 遍历当前元素的每个类名  
+        for (var j = 0, l = classNames.length; j &lt; l; j++) {  
+            if ( classNames[j] === className ) { // 说明当前遍历到的元素使用过要查找的类名  
+                result.push(tags[i]);  
+                break;  
+            }  
+        }  
+    }  
+
+    // 返回结果集  
+    return result;  
+}  
+</code></pre>
       
 
       
@@ -200,6 +247,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -250,7 +308,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=https://myy511.github.io/tags/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=https://myy511.github.io/2017/12/09/兼容问题/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -262,6 +320,16 @@
 </article>
 
   
+<nav id="article-nav">
+  
+  
+    <a href="/2017/11/02/浅谈作用域和闭包/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">浅谈作用域和闭包</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -312,7 +380,7 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
