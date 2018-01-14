@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Myy511">
 <meta property="og:description" content="函数作用域和块级作用域任何程序设计语言都有作用域的概念，简单的说，作用域就是变量或函数的作用范围。在JavaScript中，变量的作用域有全局作用域和局部作用域两种，并且局部作用域是按照函数划分的，而不是块级作用域，下面我们就来详细区分一下这些作用域。 1.在Java、C或C++中，花括号{}内封闭的代码块有自己的作用域，在{}外部无法访问{}内部的变量，这个作用域就称为块级作用域。 2.在jav">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-04T01:56:32.292Z">
+<meta property="og:updated_time" content="2017-12-16T08:09:55.994Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="浅谈作用域和闭包">
 <meta name="twitter:description" content="函数作用域和块级作用域任何程序设计语言都有作用域的概念，简单的说，作用域就是变量或函数的作用范围。在JavaScript中，变量的作用域有全局作用域和局部作用域两种，并且局部作用域是按照函数划分的，而不是块级作用域，下面我们就来详细区分一下这些作用域。 1.在Java、C或C++中，花括号{}内封闭的代码块有自己的作用域，在{}外部无法访问{}内部的变量，这个作用域就称为块级作用域。 2.在jav">
@@ -255,7 +255,7 @@ return{
 </code></pre><p>这种模式用在需要对单例进行初始化，又需要维护其私有变量时有用。</p>
 <h1 id="全局作用域"><a href="#全局作用域" class="headerlink" title="全局作用域"></a>全局作用域</h1><p>在代码中任何地方都能访问到的对象拥有全局作用域，一般来说以下3种变量对象拥有全局作用域：</p>
 <p>1.最外层函数和在最外层函数外面定义的变量。</p>
-<p>2.所有末定义直接赋值的变量将被自动添加到全局作用域（但是严格模式下，初始化未经声明的变量会导致错误）。</p>
+<p>2.所有未定义直接赋值的变量将被自动添加到全局作用域（但是严格模式下，初始化未经声明的变量会导致错误）。</p>
 <p>3.所有window对象的内置属性，例如window.name、window.location、window.top等等都是全局变量，并且所有属于全局作用域的变量都是window对象的属性。</p>
 <p><strong>此处应有例子</strong></p>
 <pre><code>var a=1;
@@ -267,7 +267,7 @@ alert(&quot;执行了test1函数&quot;);
 alert(a);    //输出1，因为变量a是最外层函数外面定义的变量
 alert(b);    //报错undefined
 test();      //弹出“执行了test1函数”，因为test()是最外层函数
-alert(c);    //输出3，因为末定义直接赋值的变量将被自动添加到全局作用域
+alert(c);    //输出3，因为未定义直接赋值的变量将被自动添加到全局作用域
 alert(window.location);  //弹出了文档当前地址和相关信息，因为window的内置属性是全局变量
 alert(window.a);         //输出1，因为全局作用域变量a也是window对象的属性
 </code></pre><p><strong>注意：</strong>如果在调用test()之前alert(c)会报错，因为你如果没有调用过这个函数，浏览器根本不会读取到函数里面的这个变量c。</p>
@@ -290,7 +290,7 @@ alert(a);
 test();  //undefined,2
 </code></pre><p>估计很多人都会以为在调用test()函数时会弹出1，2，但事实上弹出了undefined,2，要理解其中的缘由，那必须理解作用域链。</p>
 <p><strong>概念：</strong></p>
-<p><em>作用域链的作用就是保证对作用域内有权访问的变量和函数的有序访问。通俗地说，作用域链可以被看作一种有秩序的路径,在变量解析过程中首先查找当前局部的作用域，然后查找上层作用域，内到外地查找，直到到找到最近定义的的该变量。</em></p>
+<p><em>作用域链的作用就是保证对作用域内有权访问的变量和函数的有序访问。通俗地说，作用域链可以被看作一种有秩序的路径,在变量解析过程中首先查找当前局部的作用域，然后查找上层作用域，由内到外地查找，直到到找到最近定义的的该变量。</em></p>
 <p>那么现在再去理解一下上面的例子，第一次alert(a)的时候，先在当前作用域中也就是函数test()内部查找到变量a已经被定义，但是此时并没有赋值，所以输出undefined；第二次alert(a)的时候，当前局部作用域中查找到已经赋值的变量a,所以输出2。</p>
 <pre><code>var a =1;
 function test(){
@@ -531,7 +531,7 @@ alert(object.getNameFunc()()); //&quot;My Object&quot;
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2017 myy511
+    		&copy; 2018 myy511
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -612,6 +612,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">MVVM</a>
+              </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
