@@ -8,21 +8,21 @@
   <link rel="dns-prefetch" href="https://myy511.github.io">
   <title>MVVM,MVC,MVP的区别和联系 | Myy511</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="MVC、MVP、MVVM这些模式是为了解决开发过程中的实际问题而提出来的，目前作为主流的几种架构模式而被广泛使用。 在了解MVVM之前，我们先回顾一下前端发展的历史。 在上个世纪的1989年，欧洲核子研究中心的物理学家Tim Berners-Lee发明了超文本标记语言（HyperText Markup Language），简称HTML，并在1993年成为互联网草案。从此，互联网开始迅速商业化，诞生">
+  <meta name="description" content="首先我们简要讨论下MVC，MVP，MVVM框架模型 一、MVC（Model-View-Controller）">
 <meta name="keywords" content="MVVM">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MVVM,MVC,MVP的区别和联系">
 <meta property="og:url" content="https://myy511.github.io/2018/01/14/MVVM-MVC-MVP的区别和联系/index.html">
 <meta property="og:site_name" content="Myy511">
-<meta property="og:description" content="MVC、MVP、MVVM这些模式是为了解决开发过程中的实际问题而提出来的，目前作为主流的几种架构模式而被广泛使用。 在了解MVVM之前，我们先回顾一下前端发展的历史。 在上个世纪的1989年，欧洲核子研究中心的物理学家Tim Berners-Lee发明了超文本标记语言（HyperText Markup Language），简称HTML，并在1993年成为互联网草案。从此，互联网开始迅速商业化，诞生">
+<meta property="og:description" content="首先我们简要讨论下MVC，MVP，MVVM框架模型 一、MVC（Model-View-Controller）">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://i.imgur.com/oOdUN8F.png">
 <meta property="og:image" content="https://i.imgur.com/k5TFVdP.png">
 <meta property="og:image" content="https://i.imgur.com/iuxVZJo.png">
-<meta property="og:updated_time" content="2018-01-14T04:21:09.223Z">
+<meta property="og:updated_time" content="2018-01-14T04:25:06.430Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MVVM,MVC,MVP的区别和联系">
-<meta name="twitter:description" content="MVC、MVP、MVVM这些模式是为了解决开发过程中的实际问题而提出来的，目前作为主流的几种架构模式而被广泛使用。 在了解MVVM之前，我们先回顾一下前端发展的历史。 在上个世纪的1989年，欧洲核子研究中心的物理学家Tim Berners-Lee发明了超文本标记语言（HyperText Markup Language），简称HTML，并在1993年成为互联网草案。从此，互联网开始迅速商业化，诞生">
+<meta name="twitter:description" content="首先我们简要讨论下MVC，MVP，MVVM框架模型 一、MVC（Model-View-Controller）">
 <meta name="twitter:image" content="https://i.imgur.com/oOdUN8F.png">
   
     <link rel="alternative" href="/atom.xml" title="Myy511" type="application/atom+xml">
@@ -179,10 +179,44 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>MVC、MVP、MVVM这些模式是为了解决开发过程中的实际问题而提出来的，目前作为主流的几种架构模式而被广泛使用。</p>
-<p>在了解MVVM之前，我们先回顾一下前端发展的历史。</p>
+        <p><em>首先我们简要讨论下MVC，MVP，MVVM框架模型</em></p>
+<h1 id="一、MVC（Model-View-Controller）"><a href="#一、MVC（Model-View-Controller）" class="headerlink" title="一、MVC（Model-View-Controller）"></a>一、MVC（Model-View-Controller）</h1><p><img src="https://i.imgur.com/oOdUN8F.png" alt="MVC模型框图"></p>
+<a id="more"></a>
+<p>MVC是比较直观的架构模式，用户操作-&gt;View（负责接收用户的输入操作）-&gt;Controller（业务逻辑处理）-&gt;Model（数据持久化）-&gt;View（将结果反馈给View）。</p>
+<ol>
+<li>M-Model : 业务逻辑和实体模型</li>
+<li>V-View : 布局文件</li>
+<li>C-Controller : 控制器</li>
+</ol>
+<p>该框架虽然也是把代码逻辑和UI层分离，但是View层能做的事情还是很少的，很多对于页面的呈现还是交由C实现，这样会导致项目中C的代码臃肿，如果项目小，代码臃肿点还是能接受的，但是随着项目的不断迭代，代码量的增加，你就会没办法忍受该框架开发的项目，这时MVP框架就应运而生。</p>
+<h1 id="二、MVP（Model-View-Presenter）"><a href="#二、MVP（Model-View-Presenter）" class="headerlink" title="二、MVP（Model-View-Presenter）"></a>二、MVP（Model-View-Presenter）</h1><p><img src="https://i.imgur.com/k5TFVdP.png" alt="MVP框架图"><br>MVP是把MVC中的Controller换成了Presenter（呈现），目的就是为了完全切断View跟Model之间的联系，由Presenter充当桥梁，做到View-Model之间通信的完全隔离。</p>
+<ol>
+<li>M-Model : 业务逻辑和实体模型</li>
+<li>V-View : 布局文件</li>
+<li>P-Presenter : 完成View和Model的交互</li>
+</ol>
+<p>MVP框架相对于MVC框架做了较大的改变，代替MVC框架中的C的是P，对比MVC和MVP的模型图可以发现变化最大的是View层和Model层不在直接通信，所有交互的工作都交由Presenter层来解决。既然两者都通过Presenter来通信，为了复用和可拓展性，MVP框架基于接口设计的理念大家自然就可以理解其用意。</p>
+<p>但MVP框架也有不足之处:</p>
+<p>1.接口过多，一定程度影响了编码效率。</p>
+<p>2.业务逻辑抽象到Presenter中，较为复杂的界面代码量依然会很多。</p>
+<p>3.导致Presenter的代码量过大。</p>
+<h1 id="三、MVVM（Model-View-ViewModel）"><a href="#三、MVVM（Model-View-ViewModel）" class="headerlink" title="三、MVVM（Model-View-ViewModel）"></a>三、MVVM（Model-View-ViewModel）</h1><p><img src="https://i.imgur.com/iuxVZJo.png" alt="MVVM框架图"><br>如果说MVP是对MVC的进一步改进，那么MVVM则是思想的完全变革。它是将“<strong>数据模型数据双向绑定</strong>”的思想作为核心，因此在View和Model之间没有联系，通过ViewModel进行交互，而且Model和ViewModel之间的交互是双向的，因此视图的数据的变化会同时修改数据源，而数据源数据的变化也会立即反应到View上。</p>
+<ol>
+<li>M-Model : 实体模型</li>
+<li>V-View : 布局文件</li>
+<li>VM-ViewModel : DataBinding所在之处，对外暴露出公共属性，View和Model的绑定器</li>
+</ol>
+<p>对比MVP和MVVM模型图可以看出，他们之间区别主要体现在以下两点：</p>
+<ol>
+<li><p>可重用性。你可以把一些视图逻辑放在一个ViewModel里面，让很多View重用这段视图逻辑。 </p>
+</li>
+<li><p>低耦合。以前把数据填充到View，还要进行一些视图逻辑。现在这些都可在布局中完成。</p>
+</li>
+</ol>
+<p>MVC、MVP、MVVM这些模式是为了解决开发过程中的实际问题而提出来的，目前作为主流的几种架构模式而被广泛使用。</p>
+<h1 id="四、前端中的MVVM"><a href="#四、前端中的MVVM" class="headerlink" title="四、前端中的MVVM"></a>四、前端中的MVVM</h1><p>在彻底了解MVVM之前，我们先回顾一下前端发展的历史。</p>
 <p>在上个世纪的1989年，欧洲核子研究中心的物理学家Tim Berners-Lee发明了超文本标记语言（HyperText Markup Language），简称HTML，并在1993年成为互联网草案。从此，互联网开始迅速商业化，诞生了一大批商业网站。</p>
-<p>最早的HTML页面是完全静态的网页，它们是预先编写好的存放在Web服务器上的html文件。浏览器请求某个URL时，Web服务器把对应的html文件扔给浏览器，就可以显示html文件的内容了。<br><a id="more"></a></p>
+<p>最早的HTML页面是完全静态的网页，它们是预先编写好的存放在Web服务器上的html文件。浏览器请求某个URL时，Web服务器把对应的html文件扔给浏览器，就可以显示html文件的内容了。</p>
 <p>如果要针对不同的用户显示不同的页面，显然不可能给成千上万的用户准备好成千上万的不同的html文件，所以，服务器就需要针对不同的用户，动态生成不同的html文件。一个最直接的想法就是利用C、C++这些编程语言，直接向浏览器输出拼接后的字符串。这种技术被称为CGI：Common Gateway Interface。</p>
 <p>很显然，像新浪首页这样的复杂的HTML是不可能通过拼字符串得到的。于是，人们又发现，其实拼字符串的时候，大多数字符串都是HTML片段，是不变的，变化的只有少数和用户相关的数据，所以，又出现了新的创建动态HTML的方式：ASP、JSP和PHP——分别由微软、SUN和开源社区开发。</p>
 <p>在ASP中，一个asp文件就是一个HTML，但是，需要替换的变量用特殊的&lt;%=var%&gt;标记出来了，再配合循环、条件判断，创建动态HTML就比CGI要容易得多。</p>
@@ -235,39 +269,6 @@ person.age = 51;
 // 执行代码并观察页面变化
 </code></pre><p>执行上面的代码，我们惊讶地发现，改变JavaScript对象的状态，会导致DOM结构作出对应的变化！这让我们的关注点从如何操作DOM变成了如何更新JavaScript对象的状态，而操作JavaScript对象比DOM简单多了！</p>
 <p>这就是MVVM的设计思想：关注Model的变化，让MVVM框架去自动更新DOM的状态，从而把开发者从操作DOM的繁琐步骤中解脱出来！</p>
-<p><em>接下来我们简要讨论下MVC，MVP，MVVM框架模型</em></p>
-<h1 id="一、MVC（Model-View-Controller）"><a href="#一、MVC（Model-View-Controller）" class="headerlink" title="一、MVC（Model-View-Controller）"></a>一、MVC（Model-View-Controller）</h1><p><img src="https://i.imgur.com/oOdUN8F.png" alt="MVC模型框图"></p>
-<p>MVC是比较直观的架构模式，用户操作-&gt;View（负责接收用户的输入操作）-&gt;Controller（业务逻辑处理）-&gt;Model（数据持久化）-&gt;View（将结果反馈给View）。</p>
-<ol>
-<li>M-Model : 业务逻辑和实体模型</li>
-<li>V-View : 布局文件</li>
-<li>C-Controller : 控制器</li>
-</ol>
-<p>该框架虽然也是把代码逻辑和UI层分离，但是View层能做的事情还是很少的，很多对于页面的呈现还是交由C实现，这样会导致项目中C的代码臃肿，如果项目小，代码臃肿点还是能接受的，但是随着项目的不断迭代，代码量的增加，你就会没办法忍受该框架开发的项目，这时MVP框架就应运而生。</p>
-<h1 id="二、MVP（Model-View-Presenter）"><a href="#二、MVP（Model-View-Presenter）" class="headerlink" title="二、MVP（Model-View-Presenter）"></a>二、MVP（Model-View-Presenter）</h1><p><img src="https://i.imgur.com/k5TFVdP.png" alt="MVP框架图"><br>MVP是把MVC中的Controller换成了Presenter（呈现），目的就是为了完全切断View跟Model之间的联系，由Presenter充当桥梁，做到View-Model之间通信的完全隔离。</p>
-<ol>
-<li>M-Model : 业务逻辑和实体模型</li>
-<li>V-View : 布局文件</li>
-<li>P-Presenter : 完成View和Model的交互</li>
-</ol>
-<p>MVP框架相对于MVC框架做了较大的改变，代替MVC框架中的C的是P，对比MVC和MVP的模型图可以发现变化最大的是View层和Model层不在直接通信，所有交互的工作都交由Presenter层来解决。既然两者都通过Presenter来通信，为了复用和可拓展性，MVP框架基于接口设计的理念大家自然就可以理解其用意。</p>
-<p>但MVP框架也有不足之处:</p>
-<p>1.接口过多，一定程度影响了编码效率。</p>
-<p>2.业务逻辑抽象到Presenter中，较为复杂的界面代码量依然会很多。</p>
-<p>3.导致Presenter的代码量过大。</p>
-<h1 id="三、MVVM（Model-View-ViewModel）"><a href="#三、MVVM（Model-View-ViewModel）" class="headerlink" title="三、MVVM（Model-View-ViewModel）"></a>三、MVVM（Model-View-ViewModel）</h1><p><img src="https://i.imgur.com/iuxVZJo.png" alt="MVVM框架图"><br>如果说MVP是对MVC的进一步改进，那么MVVM则是思想的完全变革。它是将“<strong>数据模型数据双向绑定</strong>”的思想作为核心，因此在View和Model之间没有联系，通过ViewModel进行交互，而且Model和ViewModel之间的交互是双向的，因此视图的数据的变化会同时修改数据源，而数据源数据的变化也会立即反应到View上。</p>
-<ol>
-<li>M-Model : 实体模型</li>
-<li>V-View : 布局文件</li>
-<li>VM-ViewModel : DataBinding所在之处，对外暴露出公共属性，View和Model的绑定器</li>
-</ol>
-<p>对比MVP和MVVM模型图可以看出，他们之间区别主要体现在以下两点：</p>
-<ol>
-<li><p>可重用性。你可以把一些视图逻辑放在一个ViewModel里面，让很多View重用这段视图逻辑。 </p>
-</li>
-<li><p>低耦合。以前把数据填充到View，还要进行一些视图逻辑。现在这些都可在布局中完成。</p>
-</li>
-</ol>
 
       
 
@@ -401,7 +402,7 @@ person.age = 51;
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一、MVC（Model-View-Controller）"><span class="toc-number">1.</span> <span class="toc-text">一、MVC（Model-View-Controller）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二、MVP（Model-View-Presenter）"><span class="toc-number">2.</span> <span class="toc-text">二、MVP（Model-View-Presenter）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#三、MVVM（Model-View-ViewModel）"><span class="toc-number">3.</span> <span class="toc-text">三、MVVM（Model-View-ViewModel）</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一、MVC（Model-View-Controller）"><span class="toc-number">1.</span> <span class="toc-text">一、MVC（Model-View-Controller）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二、MVP（Model-View-Presenter）"><span class="toc-number">2.</span> <span class="toc-text">二、MVP（Model-View-Presenter）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#三、MVVM（Model-View-ViewModel）"><span class="toc-number">3.</span> <span class="toc-text">三、MVVM（Model-View-ViewModel）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#四、前端中的MVVM"><span class="toc-number">4.</span> <span class="toc-text">四、前端中的MVVM</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -513,15 +514,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">MVVM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">html</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">MVVM</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -529,15 +526,19 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">html5 css3</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">js</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">html</a>
               </li>
             
             <div class="clearfix"></div>
