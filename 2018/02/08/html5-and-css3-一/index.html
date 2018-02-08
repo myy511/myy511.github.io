@@ -6,16 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://myy511.github.io">
-  <title>categories | Myy511</title>
+  <title>HTML5和CSS3新特性一览(一) | Myy511</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="categories">
-<meta property="og:url" content="https://myy511.github.io/categories/index.html">
+  <meta name="description" content="HTML5 HTML5 新元素  HTML5提供了新的元素来创建更好的页面结构：">
+<meta name="keywords" content="html5">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTML5和CSS3新特性一览(一)">
+<meta property="og:url" content="https://myy511.github.io/2018/02/08/html5-and-css3-一/index.html">
 <meta property="og:site_name" content="Myy511">
+<meta property="og:description" content="HTML5 HTML5 新元素  HTML5提供了新的元素来创建更好的页面结构：">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-12T02:52:08.027Z">
+<meta property="og:image" content="https://i.imgur.com/a4PHkR2.jpg">
+<meta property="og:image" content="https://i.imgur.com/sEd0iZZ.jpg">
+<meta property="og:image" content="https://i.imgur.com/zFYLl8q.jpg">
+<meta property="og:updated_time" content="2018-02-08T07:59:48.213Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="categories">
+<meta name="twitter:title" content="HTML5和CSS3新特性一览(一)">
+<meta name="twitter:description" content="HTML5 HTML5 新元素  HTML5提供了新的元素来创建更好的页面结构：">
+<meta name="twitter:image" content="https://i.imgur.com/a4PHkR2.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Myy511" type="application/atom+xml">
   
@@ -151,27 +159,200 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="page-" class="article article-type-page " itemscope itemprop="blogPost">
+            <article id="post-html5-and-css3-一" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      categories
+      HTML5和CSS3新特性一览(一)
     </h1>
   
 
         
-        <a href="/categories/index.html" class="archive-article-date">
-  	<time datetime="2017-10-12T02:51:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-12</time>
+        <a href="/2018/02/08/html5-and-css3-一/" class="archive-article-date">
+  	<time datetime="2018-02-08T07:32:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-08</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h1 id="HTML5"><a href="#HTML5" class="headerlink" title="HTML5"></a>HTML5</h1><ol>
+<li>HTML5 新元素</li>
+</ol>
+<p>HTML5提供了新的元素来创建更好的页面结构：</p>
+<p><img src="https://i.imgur.com/a4PHkR2.jpg" alt=""></p>
+<a id="more"></a>
+<p><img src="https://i.imgur.com/sEd0iZZ.jpg" alt=""></p>
+<ol>
+<li>HTML5 Canvas</li>
+</ol>
+<p>HTML5 <code>&lt;canvas&gt;</code> 元素用于图形的绘制，通过脚本 (通常是JavaScript)来完成.</p>
+<p><code>&lt;canvas&gt;</code>标签只是图形容器，您必须使用脚本来绘制图形。</p>
+<p><code>&lt;canvas&gt;</code>简单实例如下:</p>
+<pre><code>&lt;canvas id=&quot;myCanvas&quot; width=&quot;200&quot; height=&quot;100&quot;&gt;&lt;/canvas&gt;
+</code></pre><p>使用 JavaScript 来绘制图像</p>
+<p>canvas 元素本身是没有绘图能力的。所有的绘制工作必须在 JavaScript 内部完成：</p>
+<pre><code>&lt;script&gt;
+var c=document.getElementById(&quot;myCanvas&quot;);
+var ctx=c.getContext(&quot;2d&quot;);
+ctx.fillStyle=&quot;#FF0000&quot;;
+ctx.fillRect(0,0,150,75);
+&lt;/script&gt;
+</code></pre><ol>
+<li>HTML5 拖放</li>
+</ol>
+<p>拖放是一种常见的特性，即抓取对象以后拖到另一个位置。在 HTML5 中，拖放是标准的一部分，任何元素都能够拖放。</p>
+<p>设置元素为可拖放</p>
+<p>首先，为了使元素可拖动，把 draggable 属性设置为 true ：</p>
+<pre><code>&lt;img draggable=&quot;true&quot;&gt;
+</code></pre><p>拖动什么 - ondragstart 和 setData()</p>
+<p>放到何处 - ondragover</p>
+<p>进行放置 - ondrop</p>
+<ol>
+<li>HTML5 地理定位</li>
+</ol>
+<p> HTML5 Geolocation API 用于获得用户的地理位置。</p>
+<p>鉴于该特性可能侵犯用户的隐私，除非用户同意，否则用户位置信息是不可用的。</p>
+<pre><code>&lt;script&gt;
+var x=document.getElementById(&quot;demo&quot;);
+function getLocation()
+  {
+  if (navigator.geolocation)
+{
+navigator.geolocation.getCurrentPosition(showPosition);
+}
+  else{x.innerHTML=&quot;该浏览器不支持获取地理位置。&quot;;}
+  }
+function showPosition(position)
+  {
+  x.innerHTML=&quot;Latitude: &quot; + position.coords.latitude + 
+  &quot;&lt;br&gt;Longitude: &quot; + position.coords.longitude; 
+  }
+&lt;/script&gt;
+</code></pre><ol>
+<li>HTML5  Audio(音频)、Video(视频)</li>
+</ol>
+<p> HTML5 规定了在网页上嵌入音频元素的标准，即使用 <code>&lt;audio&gt;</code>元素。</p>
+<pre><code>&lt;audio controls&gt;
+  &lt;source src=&quot;horse.ogg&quot; type=&quot;audio/ogg&quot;&gt;
+  &lt;source src=&quot;horse.mp3&quot; type=&quot;audio/mpeg&quot;&gt;
+您的浏览器不支持 audio 元素。
+&lt;/audio&gt;
+</code></pre><p>HTML5 规定了一种通过 video 元素来包含视频的标准方法。</p>
+<pre><code>&lt;video width=&quot;320&quot; height=&quot;240&quot; controls&gt;
+  &lt;source src=&quot;movie.mp4&quot; type=&quot;video/mp4&quot;&gt;
+  &lt;source src=&quot;movie.ogg&quot; type=&quot;video/ogg&quot;&gt;
+您的浏览器不支持Video标签。
+&lt;/video&gt;
+</code></pre><ol>
+<li>HTML5 Input 类型</li>
+</ol>
+<p> HTML5 拥有多个新的表单输入类型。这些新特性提供了更好的输入控制和验证。</p>
+<p>color、date、datetime、datetime-local、email、month、number、range、search、tel、time、url、week</p>
+<pre><code>&lt;input type=&quot;range&quot; name=&quot;points&quot; min=&quot;1&quot; max=&quot;10&quot;&gt;
+Search Google: &lt;input type=&quot;search&quot; name=&quot;googlesearch&quot;&gt;
+电话号码: &lt;input type=&quot;tel&quot; name=&quot;usrtel&quot;&gt;
+</code></pre><ol>
+<li>HTML5 表单元素</li>
+</ol>
+<p> HTML5 有以下新的表单元素:</p>
+<p><code>&lt;datalist&gt;    &lt;input&gt;</code>标签定义选项列表。请与 input 元素配合使用该元素，来定义 input 可能的值。</p>
+<p><code>&lt;keygen&gt;    &lt;keygen&gt;</code> 标签规定用于表单的密钥对生成器字段。</p>
+<p><code>&lt;output&gt;    &lt;output&gt;</code> 标签定义不同类型的输出，比如脚本的输出。</p>
+<p><code>&lt;datalist&gt;</code>元素规定输入域的选项列表。</p>
+<p><code>&lt;datalist&gt;</code>属性规定 form 或 input 域应该拥有自动完成功能。当用户在自动完成域中开始输入时，浏览器应该在该域中显示填写的选项：</p>
+<p>使用 <code>&lt;input&gt;</code>元素的列表属性与<code>&lt;datalist&gt;</code>元素绑定.</p>
+<pre><code>&lt;input list=&quot;browsers&quot;&gt;
+&lt;datalist id=&quot;browsers&quot;&gt;
+  &lt;option value=&quot;Internet Explorer&quot;&gt;
+  &lt;option value=&quot;Firefox&quot;&gt;
+  &lt;option value=&quot;Chrome&quot;&gt;
+  &lt;option value=&quot;Opera&quot;&gt;
+  &lt;option value=&quot;Safari&quot;&gt;
+&lt;/datalist&gt;
+</code></pre><ol>
+<li>HTML5 表单属性</li>
+</ol>
+<p>HTML5 的 <code>&lt;form&gt;</code> 和 <code>&lt;input&gt;</code>标签添加了几个新属性.</p>
+<p><code>&lt;form&gt;</code>新属性：</p>
+<p>autocomplete、novalidate</p>
+<p><code>&lt;input&gt;</code>新属性：</p>
+<p>autocomplete、autofocus、form、formaction、formenctype、formmethod、formnovalidate、formtarget、height and width、list、min and max、multiple、pattern (regexp)、placeholder、required、step</p>
+<ol>
+<li>HTML5 语义元素</li>
+</ol>
+<p><img src="https://i.imgur.com/zFYLl8q.jpg" alt=""></p>
+<ol>
+<li>HTML5 Web 存储</li>
+</ol>
+<p> Web Storage DOM API 为Web应用提供了一个能够替代cookie的Javascript解决方案</p>
+<p>sessionStorage—客户端数据存储，只能维持在当前会话范围内。<br>             sessionStorage 方法针对一个 session 进行数据存储。当用户关闭浏览器窗口后，数据会被删除。</p>
+<p>localStorage—客户端数据存储，能维持在多个会话范围内。<br>             localStorage 对象存储的数据没有时间限制。第二天、第二周或下一年之后，数据依然可用。</p>
+<p>对于大量复杂数据结构，一般使用IndexDB</p>
+<ol>
+<li>HTML5 离线Web应用（应用程序缓存）</li>
+</ol>
+<p> HTML5 引入了应用程序缓存，这意味着 web 应用可进行缓存，并可在没有因特网连接时进行访问。</p>
+<p>应用程序缓存为应用带来三个优势：</p>
+<p>1 离线浏览 - 用户可在应用离线时使用它们</p>
+<p>2 速度 - 已缓存资源加载得更快</p>
+<p>3 减少服务器负载 - 浏览器将只从服务器下载更新过或更改过的资源。</p>
+<p>HTML5 Cache Manifest 实例</p>
+<p>下面的例子展示了带有 cache manifest 的 HTML 文档（供离线浏览）：</p>
+<pre><code>&lt;!DOCTYPE HTML&gt;
+&lt;html manifest=&quot;demo.appcache&quot;&gt;
+&lt;body&gt;
+The content of the document......
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p><strong>Manifest 文件</strong></p>
+<p>manifest 文件是简单的文本文件，它告知浏览器被缓存的内容（以及不缓存的内容）。</p>
+<p>manifest 文件可分为三个部分：</p>
+<p>1 CACHE MANIFEST - 在此标题下列出的文件将在首次下载后进行缓存</p>
+<p>2 NETWORK - 在此标题下列出的文件需要与服务器的连接，且不会被缓存</p>
+<p>3 FALLBACK - 在此标题下列出的文件规定当页面无法访问时的回退页面（比如 404 页面)</p>
+<pre><code>CACHE MANIFEST
+# 2012-02-21 v1.0.0
+/theme.css
+/logo.gif
+/main.js
+NETWORK:
+login.php
+FALLBACK:
+/html/ /offline.html
+</code></pre><ol>
+<li>HTML5 Web Workers</li>
+</ol>
+<p> 当在 HTML 页面中执行脚本时，页面的状态是不可响应的，直到脚本已完成。</p>
+<p>web worker 是运行在后台的 JavaScript，独立于其他脚本，不会影响页面的性能。您可以继续做任何愿意做的事情：点击、选取内容等等，而此时 web worker 在后台运行。（相当于实现多线程并发）</p>
+<ol>
+<li>HTML5 SSE</li>
+</ol>
+<p>Server-Sent 事件指的是网页自动获取来自服务器的更新。</p>
+<p>以前也可能做到这一点，前提是网页不得不询问是否有可用的更新。通过服务器发送事件，更新能够自动到达。</p>
+<p>例子：Facebook/Twitter 更新、估价更新、新的博文、赛事结果等。</p>
+<p>EventSource 对象用于接收服务器发送事件通知：</p>
+<pre><code>var source=new EventSource(&quot;demo_sse.php&quot;);
+source.onmessage=function(event)
+{
+    document.getElementById(&quot;result&quot;).innerHTML+=event.data + &quot;&lt;br&gt;&quot;;
+};
+</code></pre><p>为了让上面的例子可以运行，您还需要能够发送数据更新的服务器（比如 PHP 和 ASP）。</p>
+<pre><code>&lt;?php 
+header(&apos;Content-Type: text/event-stream&apos;); 
+header(&apos;Cache-Control: no-cache&apos;); 
+$time = date(&apos;r&apos;); 
+echo &quot;data: The server time is: {$time}nn&quot;; 
+flush(); 
+?&gt;
+</code></pre><ol>
+<li>HTML5 WebSocket</li>
+</ol>
+<p>WebSocket是HTML5开始提供的一种在单个 TCP 连接上进行全双工通讯的协议。在WebSocket API中，浏览器和服务器只需要做一个握手的动作，然后，浏览器和服务器之间就形成了一条快速通道。两者之间就直接可以数据互相传送。浏览器通过 JavaScript 向服务器发出建立 WebSocket 连接的请求，连接建立以后，客户端和服务器端就可以通过 TCP 连接直接交换数据。当你获取 Web Socket 连接后，你可以通过 send() 方法来向服务器发送数据，并通过 onmessage 事件来接收服务器返回的数据。以下 API 用于创建 WebSocket 对象。</p>
+
       
 
       
@@ -200,6 +381,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">html5</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -250,7 +442,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=https://myy511.github.io/categories/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=https://myy511.github.io/2018/02/08/html5-and-css3-一/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -262,6 +454,25 @@
 </article>
 
   
+<nav id="article-nav">
+  
+    <a href="/2018/02/08/html5-and-css3-二/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          HTML5和CSS3新特性一览(二)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/01/23/CDN简介/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">CDN简介</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -275,6 +486,19 @@
             </div>
         </div>
         
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#HTML5"><span class="toc-number">1.</span> <span class="toc-text">HTML5</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
         
     </div>
 </aside>
@@ -312,7 +536,7 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

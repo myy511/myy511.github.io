@@ -6,16 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://myy511.github.io">
-  <title>categories | Myy511</title>
+  <title>HTML5和CSS3新特性一览(二) | Myy511</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="categories">
-<meta property="og:url" content="https://myy511.github.io/categories/index.html">
+  <meta name="description" content="CSS3CSS3选择器">
+<meta name="keywords" content="css3">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTML5和CSS3新特性一览(二)">
+<meta property="og:url" content="https://myy511.github.io/2018/02/08/html5-and-css3-二/index.html">
 <meta property="og:site_name" content="Myy511">
+<meta property="og:description" content="CSS3CSS3选择器">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-12T02:52:08.027Z">
+<meta property="og:image" content="https://i.imgur.com/QO3UU2S.jpg">
+<meta property="og:image" content="https://i.imgur.com/8dcmdcw.jpg">
+<meta property="og:image" content="https://i.imgur.com/zaDz160.jpg">
+<meta property="og:updated_time" content="2018-02-08T08:18:59.579Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="categories">
+<meta name="twitter:title" content="HTML5和CSS3新特性一览(二)">
+<meta name="twitter:description" content="CSS3CSS3选择器">
+<meta name="twitter:image" content="https://i.imgur.com/QO3UU2S.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Myy511" type="application/atom+xml">
   
@@ -151,27 +159,222 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="page-" class="article article-type-page " itemscope itemprop="blogPost">
+            <article id="post-html5-and-css3-二" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      categories
+      HTML5和CSS3新特性一览(二)
     </h1>
   
 
         
-        <a href="/categories/index.html" class="archive-article-date">
-  	<time datetime="2017-10-12T02:51:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-12</time>
+        <a href="/2018/02/08/html5-and-css3-二/" class="archive-article-date">
+  	<time datetime="2018-02-08T08:00:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-08</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h1 id="CSS3"><a href="#CSS3" class="headerlink" title="CSS3"></a>CSS3</h1><p>CSS3选择器</p>
+<p><img src="https://i.imgur.com/QO3UU2S.jpg" alt=""></p>
+<a id="more"></a>
+<p><img src="https://i.imgur.com/8dcmdcw.jpg" alt=""><br><img src="https://i.imgur.com/zaDz160.jpg" alt=""></p>
+<h2 id="CSS3-边框（Borders）"><a href="#CSS3-边框（Borders）" class="headerlink" title="CSS3 边框（Borders）"></a>CSS3 边框（Borders）</h2><p>用CSS3，你可以创建圆角边框，添加阴影框，并作为边界的形象而不使用设计程序</p>
+<p>border-image     设置所有边框图像的速记属性</p>
+<p>border-radius    一个用于设置所有四个边框- *-半径属性的速记属性</p>
+<p>box-shadow    附加一个或多个下拉框的阴影    </p>
+<pre><code>div
+{
+  border:2px solid;
+  border-radius:25px;
+  box-shadow: 10px 10px 5px #888888;
+  border-image:url(border.png) 30 30 round;
+}
+</code></pre><h2 id="CSS3-背景"><a href="#CSS3-背景" class="headerlink" title="CSS3 背景"></a>CSS3 背景</h2><p>CSS3中包含几个新的背景属性，提供更大背景元素控制。</p>
+<p>background-clip    规定背景的绘制区域。    </p>
+<p>background-origin    规定背景图片的定位区域。    </p>
+<p>background-size    规定背景图片的尺寸。</p>
+<pre><code>div
+{
+  background:url(img_flwr.gif);
+  background-repeat:no-repeat;
+  background-size:100% 100%;
+  background-origin:content-box;
+}
+</code></pre><p>多背景</p>
+<pre><code>body
+{ 
+  background-image:url(img_flwr.gif),url(img_tree.gif);
+}
+</code></pre><h2 id="CSS3-渐变"><a href="#CSS3-渐变" class="headerlink" title="CSS3 渐变"></a>CSS3 渐变</h2><p>CSS3 定义了两种类型的渐变（gradients）：</p>
+<p><strong>线性渐变（Linear Gradients）- 向下/向上/向左/向右/对角方向</strong></p>
+<pre><code>background: linear-gradient(direction, color-stop1, color-stop2, ...);
+</code></pre><p><strong>径向渐变（Radial Gradients）- 由它们的中心定义</strong></p>
+<pre><code>background: radial-gradient(center, shape size, start-color, ..., last-color);
+</code></pre><h2 id="CSS3-文本效果"><a href="#CSS3-文本效果" class="headerlink" title="CSS3 文本效果"></a>CSS3 文本效果</h2><p>hanging-punctuation    规定标点字符是否位于线框之外。    3</p>
+<p>punctuation-trim    规定是否对标点字符进行修剪。    3</p>
+<p>text-align-last    设置如何对齐最后一行或紧挨着强制换行符之前的行。    3</p>
+<p>text-emphasis    向元素的文本应用重点标记以及重点标记的前景色。    3</p>
+<p>text-justify    规定当 text-align 设置为 “justify” 时所使用的对齐方法。    3</p>
+<p>text-outline    规定文本的轮廓。    3</p>
+<p>text-overflow    规定当文本溢出包含元素时发生的事情。    3</p>
+<p>text-shadow    向文本添加阴影。    3</p>
+<p>text-wrap    规定文本的换行规则。    3</p>
+<p>word-break    规定非中日韩文本的换行规则。    3</p>
+<p>word-wrap    允许对长的不可分割的单词进行分割并换行到下一行。    3</p>
+<h2 id="CSS3-字体"><a href="#CSS3-字体" class="headerlink" title="CSS3 字体"></a>CSS3 字体</h2><p>以前CSS3的版本，网页设计师不得不使用用户计算机上已经安装的字体。使用CSS3，网页设计师可以使用他/她喜欢的任何字体。当你发现您要使用的字体文件时，只需简单的将字体文件包含在网站中，它会自动下载给需要的用户。您所选择的字体在新的CSS3版本有关于@font-face规则描述。您”自己的”的字体是在 CSS3 @font-face 规则中定义的。</p>
+<pre><code>&lt;style&gt; 
+@font-face
+{
+ font-family: myFirstFont;
+ src: url(sansation_light.woff);
+}
+div
+{
+ font-family:myFirstFont;
+}
+&lt;/style&gt;
+</code></pre><h2 id="CSS3-转换和变形"><a href="#CSS3-转换和变形" class="headerlink" title="CSS3 转换和变形"></a>CSS3 转换和变形</h2><p><strong>2D新转换属性</strong></p>
+<p>以下列出了所有的转换属性:</p>
+<p>transform    适用于2D或3D转换的元素    3</p>
+<p>transform-origin    允许您更改转化元素位置</p>
+<p><strong>2D 转换方法</strong></p>
+<p>matrix(n,n,n,n,n,n)    定义 2D 转换，使用六个值的矩阵。</p>
+<p>translate(x,y)    定义 2D 转换，沿着 X 和 Y 轴移动元素。</p>
+<p>translateX(n)    定义 2D 转换，沿着 X 轴移动元素。</p>
+<p>translateY(n)    定义 2D 转换，沿着 Y 轴移动元素。</p>
+<p>scale(x,y)    定义 2D 缩放转换，改变元素的宽度和高度。</p>
+<p>scaleX(n)    定义 2D 缩放转换，改变元素的宽度。</p>
+<p>scaleY(n)    定义 2D 缩放转换，改变元素的高度。</p>
+<p>rotate(angle)    定义 2D 旋转，在参数中规定角度。</p>
+<p>skew(x-angle,y-angle)    定义 2D 倾斜转换，沿着 X 和 Y 轴。</p>
+<p>skewX(angle)    定义 2D 倾斜转换，沿着 X 轴。</p>
+<p>skewY(angle)    定义 2D 倾斜转换，沿着 Y 轴。</p>
+<p><strong>3D转换属性</strong></p>
+<p>下表列出了所有的转换属性：</p>
+<p>transform    向元素应用 2D 或 3D 转换。    3</p>
+<p>transform-origin    允许你改变被转换元素的位置。    3</p>
+<p>transform-style    规定被嵌套元素如何在 3D 空间中显示。    3</p>
+<p>perspective    规定 3D 元素的透视效果。    3</p>
+<p>perspective-origin    规定 3D 元素的底部位置。    3</p>
+<p>backface-visibility    定义元素在不面对屏幕时是否可见。    3</p>
+<p><strong>3D 转换方法</strong></p>
+<p>matrix3d(n,n,n,n,n,n,<br>n,n,n,n,n,n,n,n,n,n)    定义 3D 转换，使用 16 个值的 4x4 矩阵。</p>
+<p>translate3d(x,y,z)    定义 3D 转化。</p>
+<p>translateX(x)    定义 3D 转化，仅使用用于 X 轴的值。</p>
+<p>translateY(y)    定义 3D 转化，仅使用用于 Y 轴的值。</p>
+<p>translateZ(z)    定义 3D 转化，仅使用用于 Z 轴的值。</p>
+<p>scale3d(x,y,z)    定义 3D 缩放转换。</p>
+<p>scaleX(x)    定义 3D 缩放转换，通过给定一个 X 轴的值。</p>
+<p>scaleY(y)    定义 3D 缩放转换，通过给定一个 Y 轴的值。</p>
+<p>scaleZ(z)    定义 3D 缩放转换，通过给定一个 Z 轴的值。</p>
+<p>rotate3d(x,y,z,angle)    定义 3D 旋转。</p>
+<p>rotateX(angle)    定义沿 X 轴的 3D 旋转。</p>
+<p>rotateY(angle)    定义沿 Y 轴的 3D 旋转。</p>
+<p>rotateZ(angle)    定义沿 Z 轴的 3D 旋转。</p>
+<p>perspective(n)    定义 3D 转换元素的透视视图。</p>
+<h2 id="CSS3-过渡"><a href="#CSS3-过渡" class="headerlink" title="CSS3 过渡"></a>CSS3 过渡</h2><p><strong>过渡属性</strong></p>
+<p>下表列出了所有的过渡属性: </p>
+<p>ransition    简写属性，用于在一个属性中设置四个过渡属性。    3</p>
+<p>transition-property    规定应用过渡的 CSS 属性的名称。    3</p>
+<p>transition-duration    定义过渡效果花费的时间。默认是 0。    3</p>
+<p>transition-timing-function    规定过渡效果的时间曲线。默认是 “ease”。    3</p>
+<p>transition-delay    规定过渡效果何时开始。默认是 0。    3</p>
+<pre><code>div
+{
+ transition-property: width;
+ transition-duration: 1s;
+ transition-timing-function: linear;
+ transition-delay: 2s;
+/* Safari */
+ -webkit-transition-property:width;
+ -webkit-transition-duration:1s;
+ -webkit-transition-timing-function:linear;
+ -webkit-transition-delay:2s;
+}
+</code></pre><h2 id="CSS3-动画"><a href="#CSS3-动画" class="headerlink" title="CSS3 动画"></a>CSS3 动画</h2><p>要创建CSS3动画，你需要了解@keyframes规则。@keyframes规则是创建动画。 @keyframes规则内指定一个CSS样式和动画将逐步从目前的样式更改为新的样式。</p>
+<p>实例<br>当动画为 25% 及 50% 时改变背景色，然后当动画 100% 完成时再次改变：</p>
+<pre><code>@keyframes myfirst
+{
+ 0%   {background: red;}
+ 25%  {background: yellow;}
+ 50%  {background: blue;}
+ 100% {background: green;}
+}
+</code></pre><p>下面的表格列出了 @keyframes 规则和所有动画属性：</p>
+<p>@keyframes    规定动画。    3</p>
+<p>animation    所有动画属性的简写属性，除了 animation-play-state 属性。    3</p>
+<p>animation-name    规定 @keyframes 动画的名称。    3</p>
+<p>animation-duration    规定动画完成一个周期所花费的秒或毫秒。默认是 0。    3</p>
+<p>animation-timing-function    规定动画的速度曲线。默认是 “ease”。    3</p>
+<p>animation-delay    规定动画何时开始。默认是 0。    3</p>
+<p>animation-iteration-count    规定动画被播放的次数。默认是 1。    3</p>
+<p>animation-direction    规定动画是否在下一周期逆向地播放。默认是 “normal”。    3</p>
+<p>animation-play-state    规定动画是否正在运行或暂停。默认是 “running”。    3</p>
+<pre><code>div
+{
+ animation-name: myfirst;
+ animation-duration: 5s;
+ animation-timing-function: linear;
+ animation-delay: 2s;
+ animation-iteration-count: infinite;
+ animation-direction: alternate;
+ animation-play-state: running;
+/* Safari and Chrome: */
+ -webkit-animation-name: myfirst;
+ -webkit-animation-duration: 5s;
+ -webkit-animation-timing-function: linear;
+ -webkit-animation-delay: 2s;
+ -webkit-animation-iteration-count: infinite;
+ -webkit-animation-direction: alternate;
+ -webkit-animation-play-state: running;
+}
+</code></pre><h2 id="CSS3-多列"><a href="#CSS3-多列" class="headerlink" title="CSS3 多列"></a>CSS3 多列</h2><p>column-count    指定元素应该被分割的列数。</p>
+<p>column-fill    指定如何填充列</p>
+<p>column-gap    指定列与列之间的间隙</p>
+<p>column-rule    所有 column-rule-* 属性的简写</p>
+<p>column-rule-color    指定两列间边框的颜色</p>
+<p>column-rule-style    指定两列间边框的样式</p>
+<p>column-rule-width    指定两列间边框的厚度</p>
+<p>column-span    指定元素要跨越多少列</p>
+<p>column-width    指定列的宽度</p>
+<p>columns    设置 column-width 和 column-count 的简写</p>
+<h2 id="CSS3-盒模型"><a href="#CSS3-盒模型" class="headerlink" title="CSS3 盒模型"></a>CSS3 盒模型</h2><p> 在 CSS3 中, 增加了一些新的用户界面特性来调整元素尺寸，框尺寸和外边框，主要包括以下用户界面属性：</p>
+<p>resize：none | both | horizontal | vertical | inherit<br>box-sizing: content-box | border-box | inherit<br>outline:outline-color outline-style outline-width outine-offset<br>resize属性指定一个元素是否应该由用户去调整大小。</p>
+<p>box-sizing 属性允许您以确切的方式定义适应某个区域的具体内容。</p>
+<p>outline-offset 属性对轮廓进行偏移，并在超出边框边缘的位置绘制轮廓。</p>
+<h2 id="CSS3伸缩布局盒模型-弹性盒"><a href="#CSS3伸缩布局盒模型-弹性盒" class="headerlink" title="CSS3伸缩布局盒模型(弹性盒)"></a>CSS3伸缩布局盒模型(弹性盒)</h2><p>CSS3 弹性盒（ Flexible Box 或 flexbox），是一种当页面需要适应不同的屏幕大小以及设备类型时确保元素拥有恰当的行为的布局方式。</p>
+<p>引入弹性盒布局模型的目的是提供一种更加有效的方式来对一个容器中的子元素进行排列、对齐和分配空白空间。</p>
+<p> 下表列出了在弹性盒子中常用到的属性:</p>
+<p>display    指定 HTML 元素盒子类型。</p>
+<p>flex-direction    指定了弹性容器中子元素的排列方式</p>
+<p>justify-content    设置弹性盒子元素在主轴（横轴）方向上的对齐方式。</p>
+<p>align-items    设置弹性盒子元素在侧轴（纵轴）方向上的对齐方式。</p>
+<p>flex-wrap    设置弹性盒子的子元素超出父容器时是否换行。</p>
+<p>align-content    修改 flex-wrap 属性的行为，类似 align-items, 但不是设置子元素对齐，而是设置行对齐</p>
+<p>flex-flow    flex-direction 和 flex-wrap 的简写</p>
+<p>order    设置弹性盒子的子元素排列顺序。</p>
+<p>align-self    在弹性子元素上使用。覆盖容器的 align-items 属性。</p>
+<p>flex    设置弹性盒子的子元素如何分配空间。</p>
+<h2 id="CSS3-多媒体查询"><a href="#CSS3-多媒体查询" class="headerlink" title="CSS3 多媒体查询"></a>CSS3 多媒体查询</h2><p>从 CSS 版本 2 开始，就可以通过媒体类型在 CSS 中获得媒体支持。如果您曾经使用过打印样式表，那么您可能已经使用过媒体类型。清单 1 展示了一个示例。</p>
+<p><strong>清单 1. 使用媒体类型</strong></p>
+<pre><code>&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;site.css&quot; media=&quot;screen&quot; /&gt;
+&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;print.css&quot; media=&quot;print&quot; /&gt;
+</code></pre><p><strong>清单 2. 媒体查询规则</strong></p>
+<pre><code>@media all and (min-width: 800px) { ... }
+</code></pre><p>@media all 是媒体类型，也就是说，将此 CSS 应用于所有媒体类型。</p>
+<p>(min-width:800px) 是包含媒体查询的表达式，如果浏览器的最小宽度为 800 像素，则会告诉浏览器只运用下列 CSS。</p>
+<p><strong>清单 3. and 条件</strong></p>
+<pre><code>@media (min-width:800px) and (max-width:1200px) and (orientation:portrait) { ... }
+</code></pre><p><strong>清单 4. or 关键词</strong> </p>
+<pre><code>@media (min-width:800px) or (orientation:portrait) { ... }
+</code></pre><p><strong>清单 5. 使用 not</strong></p>
+<pre><code>@media (not min-width:800px) { ... }
+</code></pre>
       
 
       
@@ -200,6 +403,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">css3</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -250,7 +464,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=https://myy511.github.io/categories/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=https://myy511.github.io/2018/02/08/html5-and-css3-二/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -262,6 +476,16 @@
 </article>
 
   
+<nav id="article-nav">
+  
+  
+    <a href="/2018/02/08/html5-and-css3-一/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">HTML5和CSS3新特性一览(一)</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -275,6 +499,19 @@
             </div>
         </div>
         
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#CSS3"><span class="toc-number">1.</span> <span class="toc-text">CSS3</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS3-边框（Borders）"><span class="toc-number">1.1.</span> <span class="toc-text">CSS3 边框（Borders）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS3-背景"><span class="toc-number">1.2.</span> <span class="toc-text">CSS3 背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS3-渐变"><span class="toc-number">1.3.</span> <span class="toc-text">CSS3 渐变</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS3-文本效果"><span class="toc-number">1.4.</span> <span class="toc-text">CSS3 文本效果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS3-字体"><span class="toc-number">1.5.</span> <span class="toc-text">CSS3 字体</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS3-转换和变形"><span class="toc-number">1.6.</span> <span class="toc-text">CSS3 转换和变形</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS3-过渡"><span class="toc-number">1.7.</span> <span class="toc-text">CSS3 过渡</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS3-动画"><span class="toc-number">1.8.</span> <span class="toc-text">CSS3 动画</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS3-多列"><span class="toc-number">1.9.</span> <span class="toc-text">CSS3 多列</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS3-盒模型"><span class="toc-number">1.10.</span> <span class="toc-text">CSS3 盒模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS3伸缩布局盒模型-弹性盒"><span class="toc-number">1.11.</span> <span class="toc-text">CSS3伸缩布局盒模型(弹性盒)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS3-多媒体查询"><span class="toc-number">1.12.</span> <span class="toc-text">CSS3 多媒体查询</span></a></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
         
     </div>
 </aside>
@@ -312,7 +549,7 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
