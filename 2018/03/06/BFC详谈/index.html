@@ -8,13 +8,13 @@
   <link rel="dns-prefetch" href="https://myy511.github.io">
   <title>BFC详谈 | Myy511</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="BFC（Block Formatting Context）详细分析常见的文档流分为：定位流、浮动流、普通流3种。BFC是普通流中的一种。 本文提出3个问题并给出使用BFC来解决这些问题的方法，这3个问题是：  外边距折叠（Collapsing Margins） 让一个没有设置高度的容器包含浮动元素 阻止文字环绕  什么是BFC根据W3C对BFC的描述，可以总结出：BFC是一个具有特殊CSS样式的H">
+  <meta name="description" content="BFC（Block Formatting Context）详细分析常见的文档流分为：定位流、浮动流、普通流3种。BFC是普通流中的一种。 本文提出3个问题并给出使用BFC来解决这些问题的方法，这3个问题是：  外边距折叠（Collapsing Margins） 让一个没有设置高度的容器包含浮动元素 阻止文字环绕">
 <meta name="keywords" content="html css">
 <meta property="og:type" content="article">
 <meta property="og:title" content="BFC详谈">
 <meta property="og:url" content="https://myy511.github.io/2018/03/06/BFC详谈/index.html">
 <meta property="og:site_name" content="Myy511">
-<meta property="og:description" content="BFC（Block Formatting Context）详细分析常见的文档流分为：定位流、浮动流、普通流3种。BFC是普通流中的一种。 本文提出3个问题并给出使用BFC来解决这些问题的方法，这3个问题是：  外边距折叠（Collapsing Margins） 让一个没有设置高度的容器包含浮动元素 阻止文字环绕  什么是BFC根据W3C对BFC的描述，可以总结出：BFC是一个具有特殊CSS样式的H">
+<meta property="og:description" content="BFC（Block Formatting Context）详细分析常见的文档流分为：定位流、浮动流、普通流3种。BFC是普通流中的一种。 本文提出3个问题并给出使用BFC来解决这些问题的方法，这3个问题是：  外边距折叠（Collapsing Margins） 让一个没有设置高度的容器包含浮动元素 阻止文字环绕">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://i.imgur.com/mBfIyGx.jpg">
 <meta property="og:image" content="https://i.imgur.com/B9wej6T.jpg">
@@ -22,10 +22,10 @@
 <meta property="og:image" content="https://i.imgur.com/nCosCaP.jpg">
 <meta property="og:image" content="https://i.imgur.com/NxXVSk1.jpg">
 <meta property="og:image" content="https://i.imgur.com/iDZDKgs.jpg">
-<meta property="og:updated_time" content="2018-03-06T01:02:20.912Z">
+<meta property="og:updated_time" content="2018-03-06T01:05:04.980Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="BFC详谈">
-<meta name="twitter:description" content="BFC（Block Formatting Context）详细分析常见的文档流分为：定位流、浮动流、普通流3种。BFC是普通流中的一种。 本文提出3个问题并给出使用BFC来解决这些问题的方法，这3个问题是：  外边距折叠（Collapsing Margins） 让一个没有设置高度的容器包含浮动元素 阻止文字环绕  什么是BFC根据W3C对BFC的描述，可以总结出：BFC是一个具有特殊CSS样式的H">
+<meta name="twitter:description" content="BFC（Block Formatting Context）详细分析常见的文档流分为：定位流、浮动流、普通流3种。BFC是普通流中的一种。 本文提出3个问题并给出使用BFC来解决这些问题的方法，这3个问题是：  外边距折叠（Collapsing Margins） 让一个没有设置高度的容器包含浮动元素 阻止文字环绕">
 <meta name="twitter:image" content="https://i.imgur.com/mBfIyGx.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Myy511" type="application/atom+xml">
@@ -189,6 +189,7 @@
 <li>让一个没有设置高度的容器包含浮动元素</li>
 <li>阻止文字环绕</li>
 </ol>
+<a id="more"></a>
 <h2 id="什么是BFC"><a href="#什么是BFC" class="headerlink" title="什么是BFC"></a>什么是BFC</h2><p>根据W3C对BFC的描述，可以总结出：BFC是一个具有特殊CSS样式的HTML盒子，比如div</p>
 <p>标签就经常用来当盒子用。<br>这些特殊样式如下，下面的样式只要满足一项，就说明这个盒子是BFC</p>
 <p>float: left | right</p>
@@ -644,15 +645,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">html css</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">CDN</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -660,15 +653,19 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">html</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">css3</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">html5</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">html</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -676,7 +673,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">html5</a>
+                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -685,6 +682,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">js</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">html css</a>
               </li>
             
             <div class="clearfix"></div>

@@ -179,217 +179,9 @@
 <li>让一个没有设置高度的容器包含浮动元素</li>
 <li>阻止文字环绕</li>
 </ol>
-<h2 id="什么是BFC"><a href="#什么是BFC" class="headerlink" title="什么是BFC"></a>什么是BFC</h2><p>根据W3C对BFC的描述，可以总结出：BFC是一个具有特殊CSS样式的HTML盒子，比如div</p>
-<p>标签就经常用来当盒子用。<br>这些特殊样式如下，下面的样式只要满足一项，就说明这个盒子是BFC</p>
-<p>float: left | right</p>
-<p>position: fixed | absolute</p>
-<p>display: inline-block | table-cell | table-caption | flex | inline-flex</p>
-<p>overflow: hidden | scroll | auto</p>
-<h2 id="外边距折叠"><a href="#外边距折叠" class="headerlink" title="外边距折叠"></a>外边距折叠</h2><p>外边距折叠有很多种情况，最简单的就是上下两个盒子，上面的设置了margin-bottom，下面的设置了margin-top，这时候总的外边距并不是两者相加，而是取最大的外边距作为总的外边距。（假设外边距的设置为正值）</p>
-<p>下面的代码发生了外边距折叠。</p>
-<pre><code>&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;head&gt;
-    &lt;meta charset=&quot;utf-8&quot;&gt;
-    &lt;title&gt;外边距折叠&lt;/title&gt;
-    &lt;style&gt;
-    .container { background-color: red; width: 200px; }
-    p { background-color: lightgreen; margin: 10px 0; }
-    &lt;/style&gt;
-&lt;/head&gt;
-&lt;body&gt;
-
-&lt;div class=&quot;container&quot;&gt;
-    &lt;p&gt;Sibling 1&lt;/p&gt;
-    &lt;p&gt;Sibling 2&lt;/p&gt;
-&lt;/div&gt;
-
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre><p>下面的代码通过使用overflow: hidden;新创建一个BFC，从而实现阻止外边距折叠。（overflow: hidden;本来的含义是：如果盒子的内容超出盒子，则这部分内容隐藏。）</p>
-<pre><code>&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;head&gt;
-    &lt;meta charset=&quot;utf-8&quot;&gt;
-    &lt;title&gt;使用BFC阻止外边距折叠&lt;/title&gt;
-    &lt;style&gt;
-    .container { background-color: red; width: 200px; }
-    p { background-color: lightgreen; margin: 10px 0;}
-    .newBFC {overflow: hidden; /* 这条样式专门用来创建BFC */}
-    &lt;/style&gt;
-&lt;/head&gt;
-&lt;body&gt;
-
-&lt;div class=&quot;container&quot;&gt;
-    &lt;p&gt;Sibling 1&lt;/p&gt;
-    &lt;div class=&quot;newBFC&quot;&gt;
-        &lt;p&gt;Sibling 2&lt;/p&gt;
-    &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre><p>发生了外边距折叠（左），使用BFC阻止外边距折叠（右）。</p>
-<p><img src="https://i.imgur.com/mBfIyGx.jpg" alt=""><br><img src="https://i.imgur.com/B9wej6T.jpg" alt=""></p>
-<h2 id="容器无高度包含浮动元素"><a href="#容器无高度包含浮动元素" class="headerlink" title="容器无高度包含浮动元素"></a>容器无高度包含浮动元素</h2><p>先看以下无BFC，容器无高度包含浮动元素会发生什么。</p>
-<pre><code>&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;head&gt;
-    &lt;meta charset=&quot;utf-8&quot;&gt;
-    &lt;title&gt;无BFC容器无高度包含浮动元素&lt;/title&gt;
-    &lt;style&gt;
-    .container { 
-        width: 200px;
-        background-color: green; 
-        outline: 1px dashed red;
-    }
-
-    .container div {
-        float: left; 
-        background-color: lightgreen;
-        margin: 10px;
-    }
-    &lt;/style&gt;
-&lt;/head&gt;
-&lt;body&gt;
-
-&lt;div class=&quot;container&quot;&gt;
-    &lt;div&gt;Sibling 1&lt;/div&gt;
-    &lt;div&gt;Sibling 2&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre><p>上述代码运行效果如下：</p>
-<p><img src="https://i.imgur.com/BK4We9x.jpg" alt=""></p>
-<p>可以看到，由于浮动元素是脱离普通文档流的，所以.container盒子发生了塌陷，高度变为0。如何阻止这种情况发生呢，请看下面的代码：</p>
-<pre><code>&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;head&gt;
-    &lt;meta charset=&quot;utf-8&quot;&gt;
-    &lt;title&gt;有BFC容器无高度包含浮动元素&lt;/title&gt;
-    &lt;style&gt;
-    .container { 
-        width: 200px;
-        background-color: blueviolet; 
-        outline: 1px dashed red;
-        overflow: hidden; /* 创建BFC */
-    }
-
-    .container div {
-        float: left;
-        background-color: lightgreen;
-        margin: 10px;
-    }
-    &lt;/style&gt;
-&lt;/head&gt;
-&lt;body&gt;
-
-&lt;div class=&quot;container&quot;&gt;
-    &lt;div&gt;Sibling 1&lt;/div&gt;
-    &lt;div&gt;Sibling 2&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre><p>上面的代码给.container盒子添加了一条样式overflow: hidden;，解决了容器盒子<br>塌陷的问题。运行效果图如下：</p>
-<p><img src="https://i.imgur.com/nCosCaP.jpg" alt=""></p>
-<h2 id="阻止文字环绕"><a href="#阻止文字环绕" class="headerlink" title="阻止文字环绕"></a>阻止文字环绕</h2><p>左图右文，文字环绕图片，代码实现如下：</p>
-<pre><code>&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;head&gt;
-    &lt;meta charset=&quot;utf-8&quot;&gt;
-    &lt;title&gt;左图右文 - 文字环绕图片&lt;/title&gt;
-    &lt;style&gt;
-    .container { 
-        background-color: gainsboro; 
-        width: 500px;
-        min-height: 400px;
-        padding: 10px
-    }
-
-    .pic {
-        float: left;
-        margin-right: 10px;
-    }
-    &lt;/style&gt;
-&lt;/head&gt;
-&lt;body&gt;
-
-&lt;div class=&quot;container&quot;&gt;
-    &lt;div class=&quot;pic&quot;&gt;
-        &lt;img src=&quot;5.jpg&quot; alt=&quot;小王子&quot;&gt;
-    &lt;/div&gt;
-
-    &lt;div class=&quot;text&quot;&gt;
-        《小王子》是法国作家安托万·德·圣·埃克苏佩里于1942年写成的著名儿童文学短篇小说。
-        本书的主人公是来自外星球的小王子。书中以一位飞行员作为故事叙述者，讲述了小王子
-        从自己星球出发前往地球的过程中，所经历的各种历险。作者以小王子的孩子式的眼光，
-        透视出成人的空虚、盲目，愚妄和死板教条，用浅显天真的语言写出了人类的孤独寂寞、
-        没有根基随风流浪的命运。同时，也表达出作者对金钱关系的批判，对真善美的讴歌。
-        《小王子》是法国作家安托万·德·圣·埃克苏佩里于1942年写成的著名儿童文学短篇小说。
-        本书的主人公是来自外星球的小王子。书中以一位飞行员作为故事叙述者，讲述了小王子
-        从自己星球出发前往地球的过程中，所经历的各种历险。作者以小王子的孩子式的眼光，
-        透视出成人的空虚、盲目，愚妄和死板教条，用浅显天真的语言写出了人类的孤独寂寞、
-        没有根基随风流浪的命运。同时，也表达出作者对金钱关系的批判，对真善美的讴歌。
-    &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre><p>运行效果如下：<br><img src="https://i.imgur.com/NxXVSk1.jpg" alt=""></p>
-<p>有时候我们不需要文字环绕，就想让文字老老实实待在右边。<br>左图右文，文字不环绕图片代码实现如下：</p>
-<pre><code>&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;head&gt;
-    &lt;meta charset=&quot;utf-8&quot;&gt;
-    &lt;title&gt;左图右文 - 文字不环绕图片&lt;/title&gt;
-    &lt;style&gt;
-    .container { 
-        background-color: gainsboro; 
-        width: 500px;
-        min-height: 400px;
-        padding: 10px
-    }
-
-    .pic {
-        float: left;
-        margin-right: 10px;
-    }
-
-    .text {
-        overflow: hidden;
-    }
-    &lt;/style&gt;
-&lt;/head&gt;
-&lt;body&gt;
-
-&lt;div class=&quot;container&quot;&gt;
-    &lt;div class=&quot;pic&quot;&gt;
-        &lt;img src=&quot;5.jpg&quot; alt=&quot;小王子&quot;&gt;
-    &lt;/div&gt;
-
-    &lt;div class=&quot;text&quot;&gt;
-        《小王子》是法国作家安托万·德·圣·埃克苏佩里于1942年写成的著名儿童文学短篇小说。
-        本书的主人公是来自外星球的小王子。书中以一位飞行员作为故事叙述者，讲述了小王子
-        从自己星球出发前往地球的过程中，所经历的各种历险。作者以小王子的孩子式的眼光，
-        透视出成人的空虚、盲目，愚妄和死板教条，用浅显天真的语言写出了人类的孤独寂寞、
-        没有根基随风流浪的命运。同时，也表达出作者对金钱关系的批判，对真善美的讴歌。
-        《小王子》是法国作家安托万·德·圣·埃克苏佩里于1942年写成的著名儿童文学短篇小说。
-        本书的主人公是来自外星球的小王子。书中以一位飞行员作为故事叙述者，讲述了小王子
-    &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre><p>运行效果如下：</p>
-<p><img src="https://i.imgur.com/iDZDKgs.jpg" alt=""></p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ol>
-<li>BFC就是页面上的一个隔离的独立容器，容器里面的子元素是不会影响到外面的元素。</li>
-<li>BFC的区域不会与float的元素区域重叠。</li>
-<li>计算BFC的高度时，浮动子元素也参与计算。</li>
-</ol>
-
+        
+          <a class="article-more-a" href="/2018/03/06/BFC详谈/#more">more >></a>
+        
       
 
       
@@ -1256,15 +1048,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">html css</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">CDN</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1272,15 +1056,19 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">html</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">css3</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">html5</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">html</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1288,7 +1076,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">html5</a>
+                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1297,6 +1085,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">js</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">html css</a>
               </li>
             
             <div class="clearfix"></div>
