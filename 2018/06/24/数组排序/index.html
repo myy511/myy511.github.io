@@ -6,15 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://myy511.github.io">
-  <title>Tag: html5 css3 | Myy511</title>
+  <title>数组排序 | Myy511</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Myy511">
-<meta property="og:url" content="https://myy511.github.io/tags/html5-css3/index.html">
+  <meta name="description" content="今天来整理下Javascript中的数组排序和去重： 排序 时间复杂度指的是一个算法执行所耗费的时间 空间复杂度指运行完一个程序所需内存的大小 稳定指，如果a=b,a在b的前面，排序后a仍然在b的前面 不稳定指，如果a=b，a在b的前面，排序后可能会交换位置  1. 冒泡排序原理：每次依次比较相邻的两个值，如果后面的数小于前面的数，则交换位置，每次遍历可以得到数组最大的值，要进行arr.lengt">
+<meta name="keywords" content="js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数组排序">
+<meta property="og:url" content="https://myy511.github.io/2018/06/24/数组排序/index.html">
 <meta property="og:site_name" content="Myy511">
+<meta property="og:description" content="今天来整理下Javascript中的数组排序和去重： 排序 时间复杂度指的是一个算法执行所耗费的时间 空间复杂度指运行完一个程序所需内存的大小 稳定指，如果a=b,a在b的前面，排序后a仍然在b的前面 不稳定指，如果a=b，a在b的前面，排序后可能会交换位置  1. 冒泡排序原理：每次依次比较相邻的两个值，如果后面的数小于前面的数，则交换位置，每次遍历可以得到数组最大的值，要进行arr.lengt">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-06-24T09:55:02.314Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Myy511">
+<meta name="twitter:title" content="数组排序">
+<meta name="twitter:description" content="今天来整理下Javascript中的数组排序和去重： 排序 时间复杂度指的是一个算法执行所耗费的时间 空间复杂度指运行完一个程序所需内存的大小 稳定指，如果a=b,a在b的前面，排序后a仍然在b的前面 不稳定指，如果a=b，a在b的前面，排序后可能会交换位置  1. 冒泡排序原理：每次依次比较相邻的两个值，如果后面的数小于前面的数，则交换位置，每次遍历可以得到数组最大的值，要进行arr.lengt">
   
     <link rel="alternative" href="/atom.xml" title="Myy511" type="application/atom+xml">
   
@@ -150,60 +155,270 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-数组排序" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/15/响应式布局笔记/" class="archive-article-date">
-  	<time datetime="2017-10-15T09:20:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-15</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/15/响应式布局笔记/">响应式布局笔记</a>
+    <h1 class="article-title" itemprop="name">
+      数组排序
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2018/06/24/数组排序/" class="archive-article-date">
+  	<time datetime="2018-06-24T09:43:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>今天来整理下Javascript中的数组排序和去重：</p>
+<h1 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h1><ul>
+<li>时间复杂度指的是一个算法执行所耗费的时间</li>
+<li>空间复杂度指运行完一个程序所需内存的大小</li>
+<li>稳定指，如果a=b,a在b的前面，排序后a仍然在b的前面</li>
+<li>不稳定指，如果a=b，a在b的前面，排序后可能会交换位置</li>
+</ul>
+<h2 id="1-冒泡排序"><a href="#1-冒泡排序" class="headerlink" title="1. 冒泡排序"></a>1. 冒泡排序</h2><p>原理：每次依次比较相邻的两个值，如果后面的数小于前面的数，则交换位置，每次遍历可以得到数组最大的值，要进行arr.length-1次遍历</p>
+<p>代码实现：<br><a id="more"></a><br>    var arr = [8,2,4,6,5,9];<br>      function sort(arr){<br>    for(var i =0;i<arr.length-1;i++){ for(var="" j="0;j<arr.length-i-1;j++){" if(arr[j]="">arr[j+1]){<br>            var temp = arr[j];<br>            arr[j] = arr[j+1];<br>            arr[j+1] = temp;<br>        }</arr.length-1;i++){></p>
+<pre><code>  }
+}
+return arr;
+  }
+  alert(sort(arr)); 
+</code></pre><ul>
+<li>平均时间复杂度O(n*n)</li>
+<li>最好情况O(n)</li>
+<li>最差情况O(n*n)</li>
+<li>空间复杂度O(1)</li>
+<li>稳定性：稳定  <h2 id="2-选择排序"><a href="#2-选择排序" class="headerlink" title="2. 选择排序"></a>2. 选择排序</h2></li>
+</ul>
+<p>原理：首先认为数组的第一个元素是最小的，然后从剩下的元素里找到比第一个元素还小的，如果存在则交换位置，依次循环后确定最小的元素，排在数组的首位；第二次遍历，认为数组的第二个元素是在剩余数组里最小的，再从剩余的元素里找比第二个小的元素，依次类推…</p>
+<p>代码实现：<br>    var arr = [8,2,4,6,5,9];<br>    function selectionSort(arr){<br>    var minindex,temp;<br>    var len = arr.length;<br>    for(var i = 0 ;i&lt;len-1;i++){<br>    minindex = i;<br>    for(var j=i+1;j&lt;len;j++){<br>    if(arr[j]&lt;arr[minindex]){<br>     minindex = j;<br>    }<br>    }<br>    temp = arr[i];<br>    arr[i] = arr[minindex];<br>    arr[minindex] = temp;<br>    }<br>    return arr;<br>     }<br>    alert(selectionSort(arr));  </p>
+<ul>
+<li>平均时间复杂度O(n*n)</li>
+<li>最好情况O(n*n)</li>
+<li>最差情况O(n*n)</li>
+<li>空间复杂度O(1)</li>
+<li>稳定性：不稳定<h2 id="3-快速排序"><a href="#3-快速排序" class="headerlink" title="3. 快速排序"></a>3. 快速排序</h2>原理：从数组中选定一个基数，然后对数组进行遍历，每一项与基数相比，小于基数的放入一个数组，大于基数的放入另外一个数组，然后对两个数组执行相同的操作，直到最后剩下一个元素 ，排序完成。</li>
+</ul>
+<p>代码实现：</p>
+<pre><code>var arr = [8,2,4,6,5,9,1];
+  function quickSort(arr){
+ if(arr.length&lt;=1){
+  return arr;
+ }
+ var left = [];
+ var right = [];
+ var pivotIndex = Math.floor(arr.length/2);
+ var pivot = arr.splice(pivotIndex,1)[0];
+ for(var i=0;i&lt;arr.length;i++){
+  if(arr[i]&lt;pivot){
+    left.push(arr[i]);
+  }else if(arr[i]&gt;pivot){
+    right.push(arr[i]);
+  }
+ }
+ return quickSort(left).concat([pivot],quickSort(right));
+  }
+
+  alert(quickSort(arr));  
+</code></pre><ul>
+<li>平均时间复杂度O(nlogn)</li>
+<li>最好情况O(nlogn)</li>
+<li>最差情况O(n*n)</li>
+<li>空间复杂度O(logn)</li>
+<li>稳定性：不稳定 <h1 id="去重"><a href="#去重" class="headerlink" title="去重"></a>去重</h1></li>
+</ul>
+<ol>
+<li><p>ES6提供了一种新的数据结构——Set，类似于数组，但是成员的值都是唯一的，没有重复的值，所以可以用来去重。<br>2.</p>
+<pre><code>function dedupe(arr){
+return Array.from(new Set(arr));  //转换成数组
+}
+alert(dedupe([8,2,4,6,5,9,1]))    
+</code></pre></li>
+<li><p>利用indexOf属性</p>
+<pre><code>function dedupe(arr) {
+var n = []; //一个新的临时数组
+for (var i = 0; i &lt; arr.length; i++){
+if (n.indexOf(arr[i]) == -1){
+      n.push(arr[i])
+ } ;
+ }
+  return n;
+  }    
+  alert(dedupe([8,2,4,2,5,5,1]));
+</code></pre></li>
+<li><p>继续使用indexOf属性</p>
+<pre><code>function dedupe(arr) {
+var n = []; //一个新的临时数组
+for (var i = 0; i &lt; arr.length; i++){
+if (arr.indexOf(arr[i]) == i){
+    n.push(arr[i]) //如果当前数组的第i项在当前数组中第一次出现的位置不是i，
+ //那么表示第i项是重复的，忽略掉。否则存入结果数组
+ } ;
+ }
+ return n;
+  }    
+ alert(dedupe([8,2,4,2,5,5,1]));
+</code></pre></li>
+</ol>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">html5 css3</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">js</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=https://myy511.github.io/2018/06/24/数组排序/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2018/06/24/cookie知识点总结/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">cookie知识点总结</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#排序"><span class="toc-number">1.</span> <span class="toc-text">排序</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-冒泡排序"><span class="toc-number">1.1.</span> <span class="toc-text">1. 冒泡排序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-选择排序"><span class="toc-number">1.2.</span> <span class="toc-text">2. 选择排序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-快速排序"><span class="toc-number">1.3.</span> <span class="toc-text">3. 快速排序</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#去重"><span class="toc-number">2.</span> <span class="toc-text">去重</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -226,9 +441,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
