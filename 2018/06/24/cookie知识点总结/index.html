@@ -18,7 +18,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://i.imgur.com/cyziujz.png">
 <meta property="og:image" content="https://i.imgur.com/6PtZzfN.png">
-<meta property="og:updated_time" content="2018-06-24T09:24:48.592Z">
+<meta property="og:updated_time" content="2018-06-24T09:31:51.317Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="cookie知识点总结">
 <meta name="twitter:description" content="面试的时候经常会被问到一个问题：你了解cookie吗？了解哪些知识？今天正好看到一篇关于cookie的文章，索性来整理一下。 定义首先cookie表示“饼干，小甜点”，以此来表示服务器发送给浏览器的小量信息。 是作为HTTP协议的一种扩展实现的，能够记录服务器和客户端交互的信息，Cookie规范定义了服务器和客户端交互信息的格式、生存期、使用范围、和安全性。 因为cookie多用在客户端和服务端之">
@@ -191,7 +191,7 @@ c.setMaxAge(24*60*60);                    // 设置过期时间1天，以秒为�
 response.addCookie(c);                    // 保存cookie到客户端
 </code></pre><p>　Cookie类的各方法详解：</p>
 <p><img src="https://i.imgur.com/cyziujz.png" alt=""></p>
-<h1 id="cookie的作用域"><a href="#cookie的作用域" class="headerlink" title="cookie的作用域"></a>cookie的作用域</h1><p>cookie的作用域是通过cookie的path和domain属性配置的，默认情况下，cookie和创建它的Web页面有关，并对该Web页面以及Web页面的同目录或者子目录的其他页面可见，</p>
+<h1 id="Cookie的作用域"><a href="#Cookie的作用域" class="headerlink" title="Cookie的作用域"></a>Cookie的作用域</h1><p>cookie的作用域是通过cookie的path和domain属性配置的，默认情况下，cookie和创建它的Web页面有关，并对该Web页面以及Web页面的同目录或者子目录的其他页面可见，</p>
 <p>例如：Web页面<a href="http://www.example.com/catalog/index.html页面创建了一个cookie，那么该cookie对htttp://www.example.com/catalog/order.html页面（同目录）和页面http:///www.example.com/catalog/widgets/index.html（子目录）也是可见的。" target="_blank" rel="external">http://www.example.com/catalog/index.html页面创建了一个cookie，那么该cookie对htttp://www.example.com/catalog/order.html页面（同目录）和页面http:///www.example.com/catalog/widgets/index.html（子目录）也是可见的。</a></p>
 <h1 id="setPath-与setDomain-的区别"><a href="#setPath-与setDomain-的区别" class="headerlink" title="setPath()与setDomain()的区别?"></a>setPath()与setDomain()的区别?</h1><p>setDomain()主要用来确定两个不同名称但后缀相同的网站地址是否能使用同一个Cookie。<br>例: www.agx.com和 bbs.agx.com只要有cookie.setDomain(“.zjut.edu.cn”);就都能使用该cookie</p>
 <p>setPath()主要用来确定地址里什么后缀下能够使用这个Cookie</p>
@@ -356,7 +356,7 @@ response.addCookie(c);                    // 保存cookie到客户端
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#定义"><span class="toc-number">1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#作用"><span class="toc-number">2.</span> <span class="toc-text">作用</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Cookie属性：有效期和作用域"><span class="toc-number">3.</span> <span class="toc-text">Cookie属性：有效期和作用域</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#cookie的作用域"><span class="toc-number">4.</span> <span class="toc-text">cookie的作用域</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#setPath-与setDomain-的区别"><span class="toc-number">5.</span> <span class="toc-text">setPath()与setDomain()的区别?</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Cookie的跨域："><span class="toc-number">6.</span> <span class="toc-text">Cookie的跨域：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Cookie-安全性"><span class="toc-number">7.</span> <span class="toc-text">Cookie 安全性</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Cookie-基础知识"><span class="toc-number">8.</span> <span class="toc-text">Cookie 基础知识</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Cookie和Session问答"><span class="toc-number">9.</span> <span class="toc-text">Cookie和Session问答</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#setcookie各个参数详解"><span class="toc-number">10.</span> <span class="toc-text">setcookie各个参数详解</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#定义"><span class="toc-number">1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#作用"><span class="toc-number">2.</span> <span class="toc-text">作用</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Cookie属性：有效期和作用域"><span class="toc-number">3.</span> <span class="toc-text">Cookie属性：有效期和作用域</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Cookie的作用域"><span class="toc-number">4.</span> <span class="toc-text">Cookie的作用域</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#setPath-与setDomain-的区别"><span class="toc-number">5.</span> <span class="toc-text">setPath()与setDomain()的区别?</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Cookie的跨域："><span class="toc-number">6.</span> <span class="toc-text">Cookie的跨域：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Cookie-安全性"><span class="toc-number">7.</span> <span class="toc-text">Cookie 安全性</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Cookie-基础知识"><span class="toc-number">8.</span> <span class="toc-text">Cookie 基础知识</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Cookie和Session问答"><span class="toc-number">9.</span> <span class="toc-text">Cookie和Session问答</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#setcookie各个参数详解"><span class="toc-number">10.</span> <span class="toc-text">setcookie各个参数详解</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -472,19 +472,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">DOM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">CDN</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color5">MVVM</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">MVVM</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -500,11 +496,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javaScript</a>
+                <a href="javascript:void(0)" class="js-tag color5">html</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">html</a>
+                <a href="javascript:void(0)" class="js-tag color1">javaScript</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -513,6 +509,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">html5 css3</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">DOM</a>
               </li>
             
             <div class="clearfix"></div>
