@@ -227,7 +227,7 @@ window.onload=function(){
 
     waterfall("main","pin");
 
-    var dataInt={"data":[{"src":"P_00.jpg"},{"src":"P_01.jpg"},{"src":"P_02.jpg"},{"src":"P_03.jpg"},{"src":"P_04.jpg"},{"src":"P_05.jpg"},{"src":"P_06.jpg"},{"src":"P_07.jpg"},{"src":"P_08.jpg"},{"src":"P_09.jpg"},{"src":"P_10.jpg"},{"src":"P_11.jpg"},{"src":"P_12.jpg"},{"src":"P_13.jpg"},{"src":"P_14.jpg"},{"src":"P_15.jpg"},{"src":"P_16.jpg"},{"src":"P_17.jpg"},{"src":"P_18.jpg"},{"src":"P_19.jpg"},{"src":"P_20.jpg"}]}//json数据构造
+    var dataInt={"data":[{"src":"p_00.jpg"},{"src":"p_01.jpg"},{"src":"p_02.jpg"},{"src":"p_03.jpg"},{"src":"p_04.jpg"},{"src":"p_05.jpg"},{"src":"p_06.jpg"},{"src":"p_07.jpg"},{"src":"p_08.jpg"},{"src":"p_09.jpg"},{"src":"p_10.jpg"},{"src":"p_11.jpg"},{"src":"p_12.jpg"},{"src":"p_13.jpg"},{"src":"p_14.jpg"},{"src":"p_15.jpg"},{"src":"p_16.jpg"},{"src":"p_17.jpg"},{"src":"p_18.jpg"},{"src":"p_19.jpg"},{"src":"p_20.jpg"}]}//json数据构造
     
     window.onscroll=function(){
         if(checkScrollSlide()){
