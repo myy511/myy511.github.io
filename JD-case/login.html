@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+    <style>
+      a{
+      	text-decoration: none;
+      }
+      .f1{
+        font-size: 13px;
+      }
+      .footer-mini .copyright a{
+      	color: #999;
+      }
+      .header-mini{
+      	border-bottom: 2px solid #e01222;
+      	min-width: 980px;
+      	width:100%;
+      	height: 61px;
+      	color: #666;
+      }
+      .header-mini .wrapper{
+      	margin: 0 auto;
+      	padding: 10px 0;
+      	width: 980px;
+      }
+      .cf{
+      	zoom:1;
+      }
+      .tip{
+        color:#e01222;
+      }
+    /*清除浮动*/
+      .cf:after{
+      	display: block;
+      	content: '';
+      	clear: both;
+      	height: 0;
+      	overflow: hidden;
+      	visibility: hidden;
+      }
+      a{
+      	color: #e01222;
+      	text-decoration: none;
+      }
+      .header-mini .site-logo{
+      	float: left;
+      	width: 54px;
+      	height: 36px;
+        font-size: 24px;
+        font-weight: normal;
+
+      }
+      .header-mini .login-block{
+      	float: right;
+      	line-height: 36px;
+      }
+      .content_container{
+      	width:100%;
+      	height: 700px;
+      }
+      .content{
+      	position: relative;
+      	top: 100px;
+      	width: 980px;
+      	min-width: 980px;
+      	margin: 0 auto;
+      	padding-top: 30;
+      	min-height: 300px;
+      	margin-top: 15px;
+      	background-color: #fff;
+      	opacity: 0.7;
+      	border-radius: 8px;
+      }
+      .remark{
+      	font-size: 13px;
+      	color: #999;
+      	white-space: nowrap;
+      	overflow: hidden;
+      	text-overflow: ellipsis;
+      	margin-left: 10px;
+      }
+      td{
+      	white-space: nowrap;
+      	padding-right: 5px;
+      	padding-bottom: 10px;
+      }
+      input{
+      	outline: medium;
+      }
+      tr{
+      	margin-bottom: 20px;
+      }
+      .login-block a{
+      	display: inline-block;
+      	width: 80px;
+      	background-color: #e01222;
+      	color: #fff;
+      	text-align: center;
+      }
+      .sub{
+      	background-color: #e01222;
+      	background-size:100%;
+      	background-image: linear-gradient(to bottom,#e01222,#e01222);
+      	border: 1px solid #e01222;
+      	color: #fff;
+      	position: relative;
+      	left: -200px;
+      	font-size: 16px;
+      }
+      footer{
+      border-top:1px solid #EEE;
+      padding-top: 20px;
+      text-align: center;
+
+      }
+      footer .copyright{
+      	font-size: 12px;
+      	font-family: initial;
+      }
+      footer .copyright a{
+      	color: #999;
+      	font-size: 13px;
+      	text-decoration: none;
+      	margin-right: 18px;
+      }
+
+
+      /*背景切换*/
+          .bg{
+         	position:absolute;
+         	left:0;
+         	top:0;
+         	width:100%;
+         	height:100%;
+         	-webkit-transition:opacity 2s linear;
+         	-moz-transition:opacity 2s linear;
+         	-o-transition:opacity 2s linear;
+         	transition:opacity 2s linear;
+         	opacity:0;
+         	z-index: -1;
+         }
+		#bg1{
+			background:url(img/pic1.jpg) no-repeat;
+			background-size:cover
+		}
+		#bg2{
+			background:url(img/pic2.jpg) no-repeat;
+			background-size:cover
+		}
+		#bg3{
+			background:url(img/pic3.jpg) no-repeat;
+			background-size:cover
+		}
+		#bg4{
+			background:url(img/pic4.jpg) no-repeat;
+			background-size:cover
+		}
+		#bg5{
+			background:url(img/pic5.jpg) no-repeat;
+			background-size:cover
+		}
+		.fadein{
+			opacity:0.7;
+			filter:alpha(opacity=70) /*IE 支持*/
+		}
+    </style>
+</head>
+<body>
+    
+    <header class="header-mini">
+    	<div class="wrapper cf">
+    		<a href="JD-case.html" class="site-logo">京东</a>
+    		<div class="login-block">
+    			<span class="tip">已有京东账号？</span>
+    			<a href="JD-case.html">登录</a>
+    		</div>
+    	</div>
+    </header>
+
+<div class="content_container">
+	<div id="imgs">
+		 <div id="bg1" class="bg "></div>
+		 <div id="bg2" class="bg "></div>
+		 <div id="bg3" class="bg "></div>
+		 <div id="bg4" class="bg "></div>
+		 <div id="bg5" class="bg fadein"></div>
+		 
+    </div>
+
+    <div class="content">
+    	<form id="form1" name="form1" method="post" action="project.html" onsubmit="return checkData()" opacity:0.5;>
+	    
+		  <table width="689" border="0" align="center" cellpadding="0" cellspacing="0">
+	  <!-- 用户名 -->
+		<tr>
+			<td width="111" height="38" align="right">用户名：</td>
+            <td width="202" height="38" align="left"><label for="textfield"></label>
+            <input type="text" name="username" id="username" class="inputstyle" onBlur="checkUser()"/></td>
+            <td width="385" align="left">
+            <a id="user_prompt" class="remark">用户名由英文字母和数字组成的4-16位字符,以字母开头</a>
+            </td>
+		</tr>
+		<!-- 邮箱 -->
+		<tr>
+			<td width="111" height="38" align="right">邮箱：</td>
+            <td width="202" height="38" align="left">
+            <input type="text" name="email" id="email" class="inputstyle" onBlur="checkEmail()"/></td>
+             <td width="385" align="left">
+            <div id="email_prompt"></div>
+            </td>
+		</tr>
+		<!-- 手机号 -->
+		<tr>
+			<td height="38" align="right">手机号码:</td>
+			<td height="38" align="left"><input type="text" name="number" id="number" class="inputstyle" onBlur="checkTel()"/></td>
+			<td align="left"><div id="number_prompt"></div></td>
+			</tr>
+        <!-- 密码 -->
+		<tr>
+			<td width="111" height="38" align="right">密码：</td>
+			<td height="38" align="left"><input type="password" name="psw" id="password" class="inputstyle" onBlur="checkPass()"/></td>
+			<td align="left" ><div id="pass_prompt" class="remark"> 密码由英文字母和数字组成的4-10位字符 </div></td>
+		</tr>
+		<!-- 确认密码 -->		
+	    <tr>
+			<td width="111" height="38" align="right">确认密码：</td>
+			<td height="38" align="left"><input type="password" name="newpass" id="newpass" class="inputstyle" onblur="checkRepass()"/></td>
+			<td align="left"><div id="repass_prompt"></div></td>
+		</tr>
+		<!-- 注册 -->
+        <tr>
+			<td height="38" colspan="3" align="center"><input type="submit" name="submit" id="submit" value="提交注册" class="sub" />
+			</td>
+		</tr>
+
+		</table>
+
+	   </form>
+    </div>
+</div>
+    
+	
+	<footer class="footer-mini">
+		<p class="copyright">
+			<a href="https://app.jd.com/" class="f1">手机京东</a>
+			<a href="" class="f1" target="_blank">京ICP证070359号</a>
+			<a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11000002000088" class="f1">京公网安备110105020225545</a>
+		</p>
+	</footer>
+	<script type="text/javascript">
+        //用户名验证
+		function checkUser(){
+			var user=document.getElementById("username").value;
+			var divUserId=document.getElementById("user_prompt");
+			var reg=/^[a-zA-Z][a-zA-Z0-9]{3,15}$/;
+			divUserId.innerHTML="";
+			if(user==""){
+				divUserId.innerHTML = "用户名不能为空";
+				divUserId.style = "color:red;font-size:13px;margin-left:10px;";
+				return false;
+			}
+			if(reg.test(user)==false){
+			divUserId.innerHTML="用户名不正确";
+			return false;
+			}else{
+			divUserId.innerHTML="";
+			return true;
+		}
+		} 
+		function checkEmail(){ 
+			var emai=document.getElementById("email").value; 
+			var divEmailId=document.getElementById("email_prompt"); 
+			var reg=/^\w+@\w+(\.[a-zA-Z]{2,3}){1,2}$/; 
+      divEmailId.innerHTML=""; 
+			if(reg.test(emai)==false){ 
+				divEmailId.innerHTML="邮件格式不正确，请重新输入"; 
+				divEmailId.style = "color:red;font-size:13px;margin-left:10px;";
+				return false; 
+			}else{
+				divEmailId.innerHTML=""; 
+				return true; 
+			} 
+			}
+        //确认密码验证 
+        function checkRepass(){ 
+        	var pass=document.getElementById("password").value;
+        	var repass=document.getElementById("newpass").value; 
+        	var divRepassId=document.getElementById("repass_prompt"); 
+        	if(pass!=repass){ 
+        		divRepassId.innerHTML="两次密码不一致,请重新输入";
+        		divRepassId.style = "color:red;font-size:13px;margin-left:10px;"; 
+        		return false; 
+        	} 
+        	return true; 
+        }
+        //手机号码验证 
+        function checkTel(){ 
+        	var tel=document.getElementById("number").value;
+        	var DivTelId=document.getElementById("number_prompt"); 
+        	var reg=/^1\d{10}$/; 
+          DivTelId.innerHTML=""; 
+        	if(reg.test(tel)==false){ 
+        		DivTelId.innerHTML="输入错误，请重新输入"; 
+        		DivTelId.style = "color:red;font-size:13px;margin-left:10px;";
+        		return false; 
+        	} 
+        	DivTelId.innerHTML=""; 
+        	return true; 
+        }
+
+        // 背景切换
+          // 替换class达到淡入淡出的效果
+		function fadeIn(e) {
+		  e.className = "bg fadein"
+		};
+		  
+		function fadeOut(e) {
+		  e.className = "bg"
+		};
+		//申明图片数组中当前的轮播图片
+		cur_img = document.getElementById("imgs").children.length - 1;
+		//图片轮播函数
+		function turnImgs(imgs) {
+		  
+		  
+		    var imgs = document.getElementById("imgs").children;
+		    if (cur_img == 0) {
+		      fadeOut(imgs[cur_img]);
+		      cur_img = imgs.length - 1;
+		      fadeIn(imgs[cur_img]);
+		    } else {
+		      fadeOut(imgs[cur_img]);
+		      fadeIn(imgs[cur_img - 1]);
+		      cur_img--;
+		    }
+		  }
+		  //设置轮播间隔
+		setInterval(turnImgs,3000);
+        
+	</script>
+</body>
+</html>

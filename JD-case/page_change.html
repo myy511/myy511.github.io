@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>页面分屏</title>
+    <script type="text/javascript">
+            var currentShowPageIndex = 0;
+            var animateTimeout = null;
+            var isWheelAnimating = false;
+
+            // 判断滚轮是往下还是往上
+            var isWheelUp = function(event) {
+                event = event || window.event;
+                var up = true;
+                if(event.wheelDelta){//IE/Opera/Chrome
+                    up = event.wheelDelta / 120 == 1 ? true : false;
+                }else{//Firefox
+                    up = event.detail / 3 == -1 ? true : false;
+                }
+                
+                return up;
+            }
+            // 改变changeBar的颜色样式
+            var changeBar = function(prevIndex, index) {
+                var barUl = document.getElementById('barUl');
+                var barLiList = barUl.getElementsByTagName('li');
+                barLiList[prevIndex].className = "";
+                barLiList[index].className = "active";   
+            }
+            
+            var changePage = function(pageIndex) {
+                var showPageUl = document.getElementById('wheelUl');              
+                changeBar(currentShowPageIndex, pageIndex);
+                currentShowPageIndex = pageIndex;
+                var left = -(currentShowPageIndex) * 1890;
+                showPageUl.style.marginLeft = left + "px";
+                return false;
+            }
+
+            window.onload = function(){
+                
+                var barUl = document.getElementById('barUl');
+                var barLiList = barUl.getElementsByTagName('li');
+                for(var i=0,length=barLiList.length; i<length; i++) {
+                    (function(index){
+                        barLiList[index].onclick = function(){
+                            changePage(index);
+                        };
+                    })(i);  
+                }
+            }
+
+            // 以下是滚轮事件
+            
+            var animate = function(obj, mode, from, to){
+                if(animateTimeout) {
+                    clearTimeout(animateTimeout);
+                }
+                
+                if(mode == "left") {
+                    if(from > to) {
+                        from = from - 30;  //每次循环的步长
+                        obj.style.marginLeft = (from) + "px";
+                        setTimeout(function(){
+                            animate(obj, mode, from, to);
+                        }, 30);   //页面切换滚动速度
+                    } else {
+                        isWheelAnimating = false;
+                    }
+                  
+                } 
+                if(mode=="right"){
+                    if(from < to) {
+                    from = from + 30;
+                    obj.style.marginLeft = (from) + "px";
+                    setTimeout(function(){
+                        animate(obj, mode, from, to);
+                    }, 30); 
+                } else {
+                    isWheelAnimating = false;
+                }
+
+             }
+            }
+            var mouseWheel = function(event) { 
+                if(isWheelAnimating) {
+                    return;
+                }   //如果当前正在滚动则下一次滚动不能进行
+                
+                isWheelAnimating = true;  //函数开始执行时把标志设置为true
+
+                var wheelUp = isWheelUp(event);
+
+                var showPageUl = document.getElementById('wheelUl');
+                var showPageUlWidth = parseInt(showPageUl.offsetWidth);  //5050
+
+                var showPageLiList = showPageUl.getElementsByTagName('li');
+                var showPageLiListLength = showPageLiList.length;  //5个
+
+
+
+                if(wheelUp && currentShowPageIndex < showPageLiListLength - 1) {   
+                    changeBar(currentShowPageIndex, currentShowPageIndex + 1);
+                    currentShowPageIndex ++;
+                    var left = -(currentShowPageIndex) * 1890;
+                    var from = -(currentShowPageIndex - 1) * 1890;
+                    var to = -(currentShowPageIndex) * 1890;
+                    animate(showPageUl, "left", from, to);
+                    return false;   //如果不用return将会导致左右滚动动画同时进行
+                }
+                
+                if(!wheelUp && currentShowPageIndex > 0) {
+                    changeBar(currentShowPageIndex, currentShowPageIndex - 1);
+                    currentShowPageIndex --;
+                    var from = -(currentShowPageIndex + 1) * 1890;
+                    var to = -(currentShowPageIndex) * 1890;
+                    animate(showPageUl, "right", from, to);
+                    return false;
+                } 
+                
+                isWheelAnimating = false;   //执行完一次滚动后标志清空
+            };
+
+             /*Firefox注册事件*/
+            if(document.addEventListener){ 
+                document.addEventListener('DOMMouseScroll',
+                    function(event) {
+                     mouseWheel(event); 
+                    },false); 
+            }
+             /*Safari与Chrome注册事件*/
+            document.onmousewheel = function(event) {
+             mouseWheel(event); 
+            }
+
+            
+            function getRTime(){
+              var EndTime= new Date('2018/07/5 12:00:00'); //截止时间
+              var NowTime = new Date();
+
+              var t =EndTime.getTime() - NowTime.getTime();
+              var d=Math.floor(t/1000/60/60/24);
+              var h=Math.floor(t/1000/60/60%24);
+              var m=Math.floor(t/1000/60%60);
+              var s=Math.floor(t/1000%60);
+              document.getElementById("t_d").innerHTML = d + "天";
+              document.getElementById("t_h").innerHTML = h + "时";
+              document.getElementById("t_m").innerHTML = m + "分";
+              document.getElementById("t_s").innerHTML = s + "秒";
+             }
+             setInterval(getRTime,1000);
+
+    </script>
+    <style>
+       *{
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font: 400 14px/1.5 "Hiragino Sans GB","WenQuanYi Micro Hei",tahoma,sans-serif;
+            color: #666;
+            background-color: #fff;
+            width: 100%;
+            min-width: 1170px;
+            overflow-x: hidden;
+        }
+        li{
+            list-style-type: none;
+        }
+        a{
+            text-decoration: none;
+        }
+        header{
+            width:100%;
+            height: 44px;
+            padding-left: 30px;
+            background-color: lightpink;
+            box-shadow: 1px 1px 3px solid rgba(0,0,0,0.1);
+            position: fixed;
+            min-width: 960px;
+            opacity: 0.7;
+            z-index: 1001;
+        }
+        header #menu{
+            position: absolute;
+            width: 560px;
+            height: 100%;
+            vertical-align: middle;
+            line-height: 44px;           
+            padding-right: 31px;
+            right: 10px;
+            top: 0;
+        }
+        header #menu span{
+            padding-left: 40px; font-size: 18px;
+        }
+        #wrapper{
+            position: relative;
+            height: 100%;
+        }
+        #Wheelwrapper{
+            width: 1890px;
+            min-width: 960px;
+            height: 883px;
+            margin: 0 auto;
+            bottom: 20px;
+            overflow: hidden;
+            background-color: #eee;
+        }
+        #wheelUl{
+            width: 9500px;
+            height: 100%;
+            margin-left: 0px;
+        }
+        .wheel{
+            width: 1890px;
+            height: 100%;
+            text-align: center;
+            line-height: 60px;
+        }
+        .fl{
+            float: left;
+            display: inline;
+        }
+        .page1{
+            background-color: rgb(254,218,137);
+        }
+        .page2{
+            background-color: rgb(137,254,250);
+        }
+        .page3{
+            background-color: rgb(233,163,217);
+        }
+        .page4{
+            background-color: rgb(137,182,254);
+        }
+        .page5{
+            background-color:rgb(186,138,247);
+        }
+
+        #barUl{
+            width: 100%;
+            height: 30px;
+            padding-left: 35%;
+            line-height: 25px;
+            margin: 0 auto;
+            background-color: lightpink;
+            position: fixed;
+            z-index: 1100;
+            bottom: 0px;
+            min-width: 960px;
+            opacity: 0.7;
+            box-shadow: 1px 1px 3px solid rgba(0,0,0,0.1);
+            box-sizing: border-box;
+        }
+        #barUl li{
+            width: 100px;
+            background-color: #eee;
+            height: 30px;
+            line-height: 25px;
+            margin-right: 10px;
+            text-align: center;
+            border-radius: 5px;
+            float: left;
+            display: inline-block;
+        }
+        .clear{
+            clear: both;
+        }
+       #barUl .active{
+        position: relative;
+        background-color: orange;
+
+       }
+      /*页面分屏---end---*/
+
+     /* 齿轮转动---start----*/
+      #wheelUl .page_content .iphone{
+           transform: scale(3);
+           position: absolute;
+           z-index: 111;
+           top: 386px;
+           left: 550px;
+       }
+       #wheelUl .page_content .chilun_pic3{
+          position: fixed;
+          top: 35px;
+          left: 340px;
+       }
+       #wheelUl .page_content .chilun_pic2{
+          position: fixed;
+          top: 85px;
+          left: 740px;
+       }
+       #wheelUl .page_content .chilun_pic1{
+          position: fixed;
+          top: 500px;
+          left: 720px;
+       }
+       #wheelUl .page_content .chilun_title{
+          position: fixed;
+          width:100px;
+          height: 80px;
+          top: 400px;
+          left: 570px;
+          z-index: 1111;
+       }
+       #wheelUl .page_content .chilun_title h1{
+        font-size: 38px;
+        color: #e01222;
+        font-weight: 700;
+       }
+       #wheelUl .page_content .chilun_right{
+        width: 324px;
+        height: 500px;
+       /* background: black;*/
+       /* background-image: url(chilun_images/chilun_right.jpg);*/
+        position: fixed;
+        top: 230px;
+        left: 1250px;
+        z-index: 2222;
+        overflow: hidden;
+        border: 1px solid #eee;
+        
+       }
+       #wheelUl .page_content .chilun_right .chilun_right_title{
+            width: 324px;
+            height: 200px;
+            line-height: 45px;
+
+       }
+       #wheelUl .page_content .chilun_right .chilun_right_image{
+        margin-left: 50px;
+           width: 300px;
+           height: 280px;
+           padding-left: 30px;
+           background-image: url(img/chilun_right.jpg);
+           background-repeat: no-repeat;
+           background-clip: border-box;
+       }
+       .page_content .cl3{
+        -webkit-animation: show-1 2s infinite;
+       }
+       @-webkit-keyframes show-1 {
+            from {
+                -webkit-transform: rotate(0deg);
+            }
+           /* 50%{
+                -webkit-transform: rotate(180deg);
+            }*/
+            to {
+                -webkit-transform: rotate(360deg);
+            }
+        }
+        .page_content .cl2{
+        -webkit-animation: show-1 2s infinite;
+       }
+      
+         .page_content .cl1{
+        -webkit-animation: show-1 2s infinite;
+       }
+      
+        /* 齿轮转动---end----*/
+
+       /* 花瓣展开*/
+       .page_flower {
+            text-align: left;
+            padding-top: 40px;
+            width:100px;
+            height: 100px;
+            position: fixed;
+            top: 45px;
+            left: 35px;
+        }
+        .page_flower .demo {
+           /* margin: 40px auto 0;*/
+            /*width: 500px;*/
+        }
+        
+        .box {
+            position: relative;
+            height: 400px;
+        }
+        
+        .box .leaf {
+            position: absolute;
+        }
+        .leaf {
+            /*margin-top: 400px;*/
+            width: 30px;
+            height: 30px;
+            border-radius: 30px 0px;
+            background: -webkit-linear-gradient(rgba(255, 0, 1, 1) 8%, rgba(255, 0, 0, 1) 100%);
+
+            opacity: 0.5;
+            -webkit-transform: rotate(135deg);   
+            /*顺时针旋转*/
+            -webkit-transform-origin: top right;  
+            /*定义视图被置于 X ,Y轴的何处,必须与transform属性一块使用,如果不设置这个，是以中心点转，现在是以最底下的点为中心转*/
+        }
+        .leaf:nth-child(2) {
+            -webkit-animation: show-2 5s infinite;
+            animation-direction:alternate;
+            -webkit-animation-direction:alternate;
+          /*   -webkit-animation-fill-mode: forwards; */  
+            /*规定动画在播放之前或之后，其动画效果是否可见。forwards表示当动画完成后，保持最后一个属性值*/
+        }
+        
+
+        .leaf:nth-child(3) {
+            -webkit-animation: show-3 5s ease-in-out infinite;
+            animation-direction:alternate;
+            -webkit-animation-direction:alternate;
+            /*-webkit-animation-fill-mode: forwards;*/
+        }
+
+        .leaf:nth-child(4) {
+            -webkit-animation: show-4 5s ease-in-out infinite;
+            animation-direction:alternate;
+            -webkit-animation-direction:alternate;
+           /* -webkit-animation-fill-mode: forwards;*/
+        }
+
+        .leaf:nth-child(5) {
+            -webkit-animation: show-5 5s ease-in-out infinite;
+            animation-direction:alternate;
+            -webkit-animation-direction:alternate;
+           /* -webkit-animation-fill-mode: forwards;*/
+        }
+        .leaf:nth-child(6){
+             -webkit-animation: show-6 5s ease-in-out infinite;
+            animation-direction:alternate;
+            -webkit-animation-direction:alternate;
+        }
+        
+        .leaf:nth-child(7) {
+            -webkit-animation: show-7 5s ease-in-out infinite;
+            animation-direction:alternate;
+            -webkit-animation-direction:alternate;
+        }
+
+        .leaf:nth-child(8) {
+            -webkit-animation: show-8 5s ease-in-out infinite;
+            animation-direction:alternate;
+            -webkit-animation-direction:alternate;
+        }
+        .leaf:nth-child(9) {
+            -webkit-animation: show-9 5s ease-in-out infinite;
+            animation-direction:alternate;
+            -webkit-animation-direction:alternate;
+        }
+
+        @-webkit-keyframes show-2 {
+            0% {
+                -webkit-transform: rotate(135deg);
+            }
+            100% {
+                -webkit-transform: rotate(160deg);
+            }
+        }
+
+        @-webkit-keyframes show-3 {
+            0% {
+                -webkit-transform: rotate(135deg);
+            }
+            100% {
+                -webkit-transform: rotate(110deg);
+            }
+        }
+
+        @-webkit-keyframes show-4 {
+            0% {
+                -webkit-transform: rotate(135deg);
+            }
+            100% {
+                -webkit-transform: rotate(186deg);
+            }
+        }
+
+        @-webkit-keyframes show-5 {
+            0% {
+                -webkit-transform: rotate(135deg);
+            }
+            100% {
+                -webkit-transform: rotate(210deg);
+            }
+        }
+
+        @-webkit-keyframes show-6 {
+            0% {
+                -webkit-transform: rotate(135deg);
+            }
+            100% {
+                -webkit-transform: rotate(58deg);
+            }
+        }
+
+        @-webkit-keyframes show-7 {
+            0% {
+                -webkit-transform: rotate(135deg);
+            }
+            100% {
+                -webkit-transform: rotate(235deg);
+            }
+        }
+
+        @-webkit-keyframes show-8 {
+            0% {
+                -webkit-transform: rotate(135deg);
+            }
+            100% {
+                -webkit-transform: rotate(32deg);
+            }
+        }
+        @-webkit-keyframes show-9 {
+            0% {
+                -webkit-transform: rotate(135deg);
+            }
+            100% {
+                -webkit-transform: rotate(85deg);
+            }
+        }
+        /*花瓣展示结束*/
+       #countdown{
+        margin-left: 75px;
+       }
+        #countdown .dis{
+            color: #e01222;
+            font-size: 16px;
+            font-weight: 700;
+        }
+        #countdown #CountMsg span{
+            color: #e01222;
+            font-size: 16px;
+            font-weight: 700;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <a href="">
+            <h1>京东客户端下载</h1>
+            <img src="" alt="">
+        </a>
+         <div id="countdown">
+            <div class="dis">距离抢购结束还有：</div>
+            <div id="CountMsg" class="HotDate">
+             <span id="t_d">00天</span>
+             <span id="t_h">00时</span>
+             <span id="t_m">00分</span>
+             <span id="t_s">00秒</span>
+            </div>
+         </div>
+        <div id="menu">
+            <span>Android</span>
+            <span>iPhone</span>
+            <span>iPad</span>
+            <span>WP8</span>
+            <span>手机网页版</span>
+        </div>
+
+    </header>
+    <div id="wrapper">
+
+        
+        <div id="Wheelwrapper">
+                        
+            <ul id="wheelUl">
+                <li class="page1 wheel fl">
+                      <div class="page_content"> 
+                         <img src="img/iphone.png" alt="" class="iphone">
+                         <div class="chilun_pic3">
+                             <img src="img/chilun3.png" alt="" class="cl3">                         
+                         </div>
+                         <div class="chilun_pic2">
+                             <img src="img/chilun2.png" alt="" class="cl2">
+                         </div>
+                         <div class="chilun_pic1">
+                             <img src="img/chilun1.png" alt="" class="cl1">
+                         </div>
+                         <div class="chilun_title">
+                             <h1>京东</h1>
+                             <h2>发现生活的美</h2>
+                             
+                         </div>
+                         <div class="chilun_right">
+
+                             <div class="chilun_right_title">
+                                 <h1>日常购物，应有尽有</h1>
+                                 <h2>美食、服装、图书、运动等你玩转</h2>
+                             </div>
+                             <div class="chilun_right_image">
+                                 
+                             </div>
+                             <!-- <img src="chilun_images/chilun_right.jpg" alt=""> -->
+                         </div>
+                         
+                      </div>
+
+                      <div class="page_flower">
+                        <section class="demo">
+                            <div class="box">
+                                <div class="leaf"></div>
+                                <div class="leaf"></div>
+                                <div class="leaf"></div>
+                                <div class="leaf"></div>
+                                <div class="leaf"></div>
+                                <div class="leaf"></div>
+                                <div class="leaf"></div>
+                                <div class="leaf"></div>
+                                <div class="leaf"></div>
+                            </div>
+                        </section>
+                      </div>
+                </li>
+
+                <li class="page2 wheel fl"></li>
+                <li class="page3 wheel fl"></li>
+                <li class="page4 wheel fl"></li>
+                <li class="page5 wheel fl"></li>
+                <div class="clear"></div>
+            </ul>
+           
+            <ul id="barUl">
+                <li class="active">1</li>
+                <li class="">2</li>
+                <li class="">3</li>
+                <li class="">4</li>
+                <li class="">5</li>
+            </ul>
+            
+        </div>
+        
+    </div>
+
+
+</body>
+</html>
