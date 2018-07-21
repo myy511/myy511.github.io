@@ -1,156 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
     <title>页面分屏</title>
-    <script type="text/javascript">
-            var currentShowPageIndex = 0;
-            var animateTimeout = null;
-            var isWheelAnimating = false;
-
-            // 判断滚轮是往下还是往上
-            var isWheelUp = function(event) {
-                event = event || window.event;
-                var up = true;
-                if(event.wheelDelta){//IE/Opera/Chrome
-                    up = event.wheelDelta / 120 == 1 ? true : false;
-                }else{//Firefox
-                    up = event.detail / 3 == -1 ? true : false;
-                }
-                
-                return up;
-            }
-            // 改变changeBar的颜色样式
-            var changeBar = function(prevIndex, index) {
-                var barUl = document.getElementById('barUl');
-                var barLiList = barUl.getElementsByTagName('li');
-                barLiList[prevIndex].className = "";
-                barLiList[index].className = "active";   
-            }
-            
-            var changePage = function(pageIndex) {
-                var showPageUl = document.getElementById('wheelUl');              
-                changeBar(currentShowPageIndex, pageIndex);
-                currentShowPageIndex = pageIndex;
-                var left = -(currentShowPageIndex) * 1890;
-                showPageUl.style.marginLeft = left + "px";
-                return false;
-            }
-
-            window.onload = function(){
-                
-                var barUl = document.getElementById('barUl');
-                var barLiList = barUl.getElementsByTagName('li');
-                for(var i=0,length=barLiList.length; i<length; i++) {
-                    (function(index){
-                        barLiList[index].onclick = function(){
-                            changePage(index);
-                        };
-                    })(i);  
-                }
-            }
-
-            // 以下是滚轮事件
-            
-            var animate = function(obj, mode, from, to){
-                if(animateTimeout) {
-                    clearTimeout(animateTimeout);
-                }
-                
-                if(mode == "left") {
-                    if(from > to) {
-                        from = from - 30;  //每次循环的步长
-                        obj.style.marginLeft = (from) + "px";
-                        setTimeout(function(){
-                            animate(obj, mode, from, to);
-                        }, 30);   //页面切换滚动速度
-                    } else {
-                        isWheelAnimating = false;
-                    }
-                  
-                } 
-                if(mode=="right"){
-                    if(from < to) {
-                    from = from + 30;
-                    obj.style.marginLeft = (from) + "px";
-                    setTimeout(function(){
-                        animate(obj, mode, from, to);
-                    }, 30); 
-                } else {
-                    isWheelAnimating = false;
-                }
-
-             }
-            }
-            var mouseWheel = function(event) { 
-                if(isWheelAnimating) {
-                    return;
-                }   //如果当前正在滚动则下一次滚动不能进行
-                
-                isWheelAnimating = true;  //函数开始执行时把标志设置为true
-
-                var wheelUp = isWheelUp(event);
-
-                var showPageUl = document.getElementById('wheelUl');
-                var showPageUlWidth = parseInt(showPageUl.offsetWidth);  //5050
-
-                var showPageLiList = showPageUl.getElementsByTagName('li');
-                var showPageLiListLength = showPageLiList.length;  //5个
-
-
-
-                if(wheelUp && currentShowPageIndex < showPageLiListLength - 1) {   
-                    changeBar(currentShowPageIndex, currentShowPageIndex + 1);
-                    currentShowPageIndex ++;
-                    var left = -(currentShowPageIndex) * 1890;
-                    var from = -(currentShowPageIndex - 1) * 1890;
-                    var to = -(currentShowPageIndex) * 1890;
-                    animate(showPageUl, "left", from, to);
-                    return false;   //如果不用return将会导致左右滚动动画同时进行
-                }
-                
-                if(!wheelUp && currentShowPageIndex > 0) {
-                    changeBar(currentShowPageIndex, currentShowPageIndex - 1);
-                    currentShowPageIndex --;
-                    var from = -(currentShowPageIndex + 1) * 1890;
-                    var to = -(currentShowPageIndex) * 1890;
-                    animate(showPageUl, "right", from, to);
-                    return false;
-                } 
-                
-                isWheelAnimating = false;   //执行完一次滚动后标志清空
-            };
-
-             /*Firefox注册事件*/
-            if(document.addEventListener){ 
-                document.addEventListener('DOMMouseScroll',
-                    function(event) {
-                     mouseWheel(event); 
-                    },false); 
-            }
-             /*Safari与Chrome注册事件*/
-            document.onmousewheel = function(event) {
-             mouseWheel(event); 
-            }
-
-            
-            function getRTime(){
-              var EndTime= new Date('2018/07/5 12:00:00'); //截止时间
-              var NowTime = new Date();
-
-              var t =EndTime.getTime() - NowTime.getTime();
-              var d=Math.floor(t/1000/60/60/24);
-              var h=Math.floor(t/1000/60/60%24);
-              var m=Math.floor(t/1000/60%60);
-              var s=Math.floor(t/1000%60);
-              document.getElementById("t_d").innerHTML = d + "天";
-              document.getElementById("t_h").innerHTML = h + "时";
-              document.getElementById("t_m").innerHTML = m + "分";
-              document.getElementById("t_s").innerHTML = s + "秒";
-             }
-             setInterval(getRTime,1000);
-
-    </script>
     <style>
        *{
             margin: 0;
@@ -633,7 +485,153 @@
         </div>
         
     </div>
+ <script type="text/javascript">
+            var currentShowPageIndex = 0;
+            var animateTimeout = null;
+            var isWheelAnimating = false;
+
+            // 判断滚轮是往下还是往上
+            var isWheelUp = function(event) {
+                event = event || window.event;
+                var up = true;
+                if(event.wheelDelta){//IE/Opera/Chrome
+                    up = event.wheelDelta / 120 == 1 ? true : false;
+                }else{//Firefox
+                    up = event.detail / 3 == -1 ? true : false;
+                }
+                
+                return up;
+            }
+            // 改变changeBar的颜色样式
+            var changeBar = function(prevIndex, index) {
+                var barUl = document.getElementById('barUl');
+                var barLiList = barUl.getElementsByTagName('li');
+                barLiList[prevIndex].className = "";
+                barLiList[index].className = "active";   
+            }
+            
+            var changePage = function(pageIndex) {
+                var showPageUl = document.getElementById('wheelUl');              
+                changeBar(currentShowPageIndex, pageIndex);
+                currentShowPageIndex = pageIndex;
+                var left = -(currentShowPageIndex) * 1890;
+                showPageUl.style.marginLeft = left + "px";
+                return false;
+            }
+
+            window.onload = function(){
+                
+                var barUl = document.getElementById('barUl');
+                var barLiList = barUl.getElementsByTagName('li');
+                for(var i=0,length=barLiList.length; i<length; i++) {
+                    (function(index){
+                        barLiList[index].onclick = function(){
+                            changePage(index);
+                        };
+                    })(i);  
+                }
+            }
+
+            // 以下是滚轮事件
+            
+            var animate = function(obj, mode, from, to){
+                if(animateTimeout) {
+                    clearTimeout(animateTimeout);
+                }
+                
+                if(mode == "left") {
+                    if(from > to) {
+                        from = from - 30;  //每次循环的步长
+                        obj.style.marginLeft = (from) + "px";
+                        setTimeout(function(){
+                            animate(obj, mode, from, to);
+                        }, 30);   //页面切换滚动速度
+                    } else {
+                        isWheelAnimating = false;
+                    }
+                  
+                } 
+                if(mode=="right"){
+                    if(from < to) {
+                    from = from + 30;
+                    obj.style.marginLeft = (from) + "px";
+                    setTimeout(function(){
+                        animate(obj, mode, from, to);
+                    }, 30); 
+                } else {
+                    isWheelAnimating = false;
+                }
+
+             }
+            }
+            var mouseWheel = function(event) { 
+                if(isWheelAnimating) {
+                    return;
+                }   //如果当前正在滚动则下一次滚动不能进行
+                
+                isWheelAnimating = true;  //函数开始执行时把标志设置为true
+
+                var wheelUp = isWheelUp(event);
+
+                var showPageUl = document.getElementById('wheelUl');
+                var showPageUlWidth = parseInt(showPageUl.offsetWidth);  //5050
+
+                var showPageLiList = showPageUl.getElementsByTagName('li');
+                var showPageLiListLength = showPageLiList.length;  //5个
 
 
+
+                if(wheelUp && currentShowPageIndex < showPageLiListLength - 1) {   
+                    changeBar(currentShowPageIndex, currentShowPageIndex + 1);
+                    currentShowPageIndex ++;
+                    var left = -(currentShowPageIndex) * 1890;
+                    var from = -(currentShowPageIndex - 1) * 1890;
+                    var to = -(currentShowPageIndex) * 1890;
+                    animate(showPageUl, "left", from, to);
+                    return false;   //如果不用return将会导致左右滚动动画同时进行
+                }
+                
+                if(!wheelUp && currentShowPageIndex > 0) {
+                    changeBar(currentShowPageIndex, currentShowPageIndex - 1);
+                    currentShowPageIndex --;
+                    var from = -(currentShowPageIndex + 1) * 1890;
+                    var to = -(currentShowPageIndex) * 1890;
+                    animate(showPageUl, "right", from, to);
+                    return false;
+                } 
+                
+                isWheelAnimating = false;   //执行完一次滚动后标志清空
+            };
+
+             /*Firefox注册事件*/
+            if(document.addEventListener){ 
+                document.addEventListener('DOMMouseScroll',
+                    function(event) {
+                     mouseWheel(event); 
+                    },false); 
+            }
+             /*Safari与Chrome注册事件*/
+            document.onmousewheel = function(event) {
+             mouseWheel(event); 
+            }
+
+            
+            function getRTime(){
+              var EndTime= new Date('2018/07/5 12:00:00'); //截止时间
+              var NowTime = new Date();
+
+              var t =EndTime.getTime() - NowTime.getTime();
+              var d=Math.floor(t/1000/60/60/24);
+              var h=Math.floor(t/1000/60/60%24);
+              var m=Math.floor(t/1000/60%60);
+              var s=Math.floor(t/1000%60);
+              document.getElementById("t_d").innerHTML = d + "天";
+              document.getElementById("t_h").innerHTML = h + "时";
+              document.getElementById("t_m").innerHTML = m + "分";
+              document.getElementById("t_s").innerHTML = s + "秒";
+             }
+             setInterval(getRTime,1000);
+
+    </script>
 </body>
 </html>
